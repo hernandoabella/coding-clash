@@ -52,7 +52,7 @@ export default function Home() {
               : "bg-gray-300 text-gray-500 cursor-not-allowed"
           }`}
         >
-          🚀 Start Quiz
+          Start Game
         </button>
       </div>
     </main>
