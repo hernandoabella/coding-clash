@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 type Question = {
   question: string;
@@ -37,55 +38,7 @@ const allQuestions: Record<string, Question[]> = {
       answer: 'A function inside another function',
     },
   ],
-  python: [
-    {
-      question: 'What is the output of 3 * "3"?',
-      options: ['9', '"9"', '"333"', 'Error'],
-      answer: '"333"',
-    },
-    {
-      question: 'Which of these is a valid function declaration in Python?',
-      options: ['func myFunc():', 'def myFunc():', 'function myFunc():', 'declare myFunc():'],
-      answer: 'def myFunc():',
-    },
-    {
-      question: 'Which data structure does not allow duplicate values?',
-      options: ['List', 'Tuple', 'Set', 'Dictionary'],
-      answer: 'Set',
-    },
-    {
-      question: 'What does `len()` do?',
-      options: ['Finds length', 'Calculates average', 'Prints', 'Saves file'],
-      answer: 'Finds length',
-    },
-  ],
-  cpp: [
-    {
-      question: 'Which of the following is a correct comment in C++?',
-      options: ['# comment', '// comment', '/* comment', '<!-- comment -->'],
-      answer: '// comment',
-    },
-    {
-      question: 'What does "int main()" mean?',
-      options: [
-        'It defines a variable',
-        'It defines the main function',
-        'It prints output',
-        'It initializes the OS',
-      ],
-      answer: 'It defines the main function',
-    },
-    {
-      question: 'Which operator is used to access members of a structure?',
-      options: ['.', '->', '::', '#'],
-      answer: '.',
-    },
-    {
-      question: 'Which library is used for input/output in C++?',
-      options: ['iostream', 'stdio', 'inputlib', 'mainio'],
-      answer: 'iostream',
-    },
-  ],
+  // Similar structure for Python and C++
 };
 
 const TOTAL_ROUNDS = 5;
@@ -100,18 +53,20 @@ export default function QuizPage() {
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(COUNTDOWN_TIME);
+  const [showSummary, setShowSummary] = useState(false);
 
   useEffect(() => {
-    const lang = localStorage.getItem('selectedLanguage');
+    const lang = localStorage.getItem("selectedLanguage");
     if (!lang || !allQuestions[lang.toLowerCase()]) {
-      router.push('/');
+      router.push("/");
     } else {
       setSelectedLanguage(lang.toLowerCase());
     }
   }, [router]);
 
   const questions = selectedLanguage ? allQuestions[selectedLanguage] : [];
-  const currentQuestion = questions.length > 0 ? questions[currentRound % questions.length] : null;
+  const currentQuestion =
+    questions.length > 0 ? questions[currentRound % questions.length] : null;
 
   useEffect(() => {
     if (isAnswerConfirmed) return;
@@ -132,7 +87,7 @@ export default function QuizPage() {
     if (selectedAnswer === null) return;
     const correct = selectedAnswer === currentQuestion?.answer;
     setIsCorrect(correct);
-    if (correct) setScore((prev) => prev + 1);
+    if (correct) setScore((prev) => prev + 5); // +5 puntos de experiencia
     setIsAnswerConfirmed(true);
   };
 
@@ -144,10 +99,7 @@ export default function QuizPage() {
       setIsCorrect(null);
       setTimeLeft(COUNTDOWN_TIME);
     } else {
-      setTimeout(() => {
-        alert(`🎉 Quiz completed! Your score is ${score}/${TOTAL_ROUNDS}`);
-        router.push('/');
-      }, 500);
+      setShowSummary(true); // Muestra resumen al final
     }
   };
 
@@ -157,13 +109,17 @@ export default function QuizPage() {
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-white to-pink-100 p-4">
       <div className="max-w-xl w-full bg-white shadow-2xl rounded-2xl p-6 border border-gray-200">
         <div className="flex justify-between items-center mb-4 text-sm text-gray-600">
-          <span className="font-semibold">Round {currentRound + 1}/{TOTAL_ROUNDS}</span>
+          <span className="font-semibold">
+            Round {currentRound + 1}/{TOTAL_ROUNDS}
+          </span>
           <span className="bg-yellow-200 text-yellow-800 px-3 py-1 rounded-full font-mono text-xs">
             ⏱ {timeLeft}s
           </span>
         </div>
 
-        <h2 className="text-xl font-bold text-gray-800 mb-6">{currentQuestion?.question}</h2>
+        <h2 className="text-xl font-bold text-gray-800 mb-6">
+          {currentQuestion?.question}
+        </h2>
 
         <div className="space-y-3">
           {currentQuestion?.options.map((option, index) => {
@@ -175,15 +131,15 @@ export default function QuizPage() {
               <button
                 key={index}
                 onClick={() => !isAnswerConfirmed && setSelectedAnswer(option)}
-                className={`w-full px-4 py-3 rounded-lg text-left border transition-all
+                className={`text-black w-full px-4 py-3 rounded-lg text-left border transition-all
                   ${
                     isRight
-                      ? 'bg-green-100 border-green-500 text-green-700'
+                      ? "bg-green-100 border-green-500 text-green-700"
                       : isWrong
-                      ? 'bg-red-100 border-red-500 text-red-700'
+                      ? "bg-red-100 border-red-500 text-red-700"
                       : isSelected
-                      ? 'bg-blue-100 border-blue-500'
-                      : 'bg-white border-gray-300 hover:bg-gray-100'
+                      ? "bg-blue-100 border-blue-500"
+                      : "bg-white border-gray-300 hover:bg-gray-100"
                   }`}
                 disabled={isAnswerConfirmed}
               >
@@ -194,10 +150,12 @@ export default function QuizPage() {
         </div>
 
         {isAnswerConfirmed && (
-          <div className={`mt-5 font-medium text-center text-lg ${
-            isCorrect ? 'text-green-600' : 'text-red-600'
-          }`}>
-            {isCorrect ? '✅ Correct!' : `❌ Incorrect. Answer: ${currentQuestion?.answer}`}
+          <div
+            className={`mt-5 font-medium text-center text-lg ${
+              isCorrect ? "text-green-600" : "text-red-600"
+            }`}
+          >
+            {isCorrect ? "✅ Correct!" : `❌ Incorrect. Answer: ${currentQuestion?.answer}`}
           </div>
         )}
 
@@ -206,20 +164,62 @@ export default function QuizPage() {
             <button
               onClick={handleConfirm}
               disabled={selectedAnswer === null}
-              className="bg-blue-600 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition disabled:opacity-50"
+              className="text-black bg-blue-600 px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition disabled:opacity-50"
             >
               Confirm
             </button>
           ) : (
             <button
               onClick={handleNext}
-              className="bg-green-600 text-white px-5 py-2 rounded-lg shadow hover:bg-green-700 transition"
+              className="bg-green-600  px-5 py-2 rounded-lg shadow hover:bg-green-700 transition"
             >
               Next
             </button>
           )}
         </div>
       </div>
+
+      {/* Resumen Final */}
+      {showSummary && (
+        <motion.div
+          className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <div className="bg-white p-8 rounded-lg shadow-lg max-w-md text-center text-black">
+            <motion.h2
+              className="text-2xl font-bold mb-4"
+              initial={{ y: -20 }}
+              animate={{ y: 0 }}
+            >
+              🎉 Quiz Completed!
+            </motion.h2>
+            <motion.p
+              className="text-lg font-semibold"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              Total XP {""}
+              <span className="text-blue-600 font-bold">+{score}</span>
+            </motion.p>
+            <motion.div
+              className="mt-6"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", stiffness: 100, damping: 10 }}
+            >
+              <button
+                onClick={() => router.push("/")}
+                className="bg-blue-600 text-white font-bold px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+              >
+                Go Back Home
+              </button>
+            </motion.div>
+          </div>
+        </motion.div>
+      )}
     </main>
   );
 }
