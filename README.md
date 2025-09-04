@@ -1,2 +1,2 @@
 # 🔥🛡️ Coding Clash ⚔️💥
-Battle your friend to a coding challenge.
+Battle your friends in a coding challenge.
