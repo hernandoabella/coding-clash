@@ -1,3 +1,4 @@
+// app/data/questionsByLanguage.ts
 import { Question } from "@/app/types/questions";
 
 export const questionsByLanguage: Record<string, Question[]> = {
