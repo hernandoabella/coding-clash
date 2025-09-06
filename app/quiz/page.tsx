@@ -17,49 +17,7 @@ type Question = {
 };
 
 const questionsByLanguage: Record<string, Question[]> = {
-  HTML: [
-    {
-      id: 1,
-      question: "What does HTML stand for?",
-      options: [
-        "Hyper Trainer Marking Language",
-        "Hyper Text Markup Language",
-        "Hyper Text Marketing Language",
-        "Hyper Tool Markup Language",
-      ],
-      answer: "Hyper Text Markup Language",
-      difficulty: "easy",
-      category: "HTML Basics",
-      explanation: "HTML stands for Hyper Text Markup Language, which is the standard markup language for creating web pages."
-    },
-    {
-      id: 2,
-      question: "Which tag is used to create a hyperlink in HTML?",
-      options: ["<a>", "<link>", "<href>", "<url>"],
-      answer: "<a>",
-      difficulty: "easy",
-      category: "HTML Tags",
-      explanation: "The <a> tag defines a hyperlink, which is used to link from one page to another."
-    },
-    {
-      id: 3,
-      question: "Which attribute is used to define inline styles in HTML?",
-      options: ["class", "styles", "style", "font"],
-      answer: "style",
-      difficulty: "medium",
-      category: "HTML Attributes",
-      explanation: "The style attribute is used to add inline CSS styles to an HTML element."
-    },
-    {
-      id: 4,
-      question: "Which HTML element is used for the largest heading?",
-      options: ["<h6>", "<heading>", "<h1>", "<head>"],
-      answer: "<h1>",
-      difficulty: "easy",
-      category: "HTML Tags",
-      explanation: "The <h1> element represents the highest level heading, while <h6> represents the lowest."
-    },
-  ],
+  
   JavaScript: [
     {
       id: 1,
@@ -103,90 +61,9 @@ const questionsByLanguage: Record<string, Question[]> = {
       explanation: "The === operator performs strict equality comparison, checking both value and data type."
     },
   ],
-  Python: [
-    {
-      id: 1,
-      question: "What is the output of `print(2 ** 3)` in Python?",
-      options: ["6", "8", "9", "Error"],
-      answer: "8",
-      difficulty: "easy",
-      category: "Python Operators",
-      explanation: "The ** operator is used for exponentiation in Python, so 2 ** 3 means 2 raised to the power of 3."
-    },
-    {
-      id: 2,
-      question: "Which keyword is used for function definition in Python?",
-      options: ["func", "def", "function", "define"],
-      answer: "def",
-      difficulty: "easy",
-      category: "Python Functions",
-      explanation: "In Python, the 'def' keyword is used to define a function."
-    },
-    {
-      id: 3,
-      question: "How do you create a comment in Python?",
-      options: ["// Comment", "/* Comment */", "# Comment", "-- Comment"],
-      answer: "# Comment",
-      difficulty: "easy",
-      category: "Python Syntax",
-      explanation: "Python uses the # symbol for single-line comments."
-    },
-    {
-      id: 4,
-      question: "Which collection is ordered and changeable in Python?",
-      options: ["Set", "Dictionary", "List", "Tuple"],
-      answer: "List",
-      difficulty: "medium",
-      category: "Python Data Structures",
-      explanation: "Lists are ordered, mutable sequences in Python. Tuples are ordered but immutable."
-    },
-  ],
-  CSS: [
-    {
-      id: 1,
-      question: "Which property is used to change the text color?",
-      options: ["text-color", "font-color", "color", "text-style"],
-      answer: "color",
-      difficulty: "easy",
-      category: "CSS Properties",
-      explanation: "The 'color' property is used to set the color of text in CSS."
-    },
-    {
-      id: 2,
-      question: "How do you select an element with id 'header' in CSS?",
-      options: [".header", "#header", "*header", "header"],
-      answer: "#header",
-      difficulty: "easy",
-      category: "CSS Selectors",
-      explanation: "The # symbol is used to select elements by their id attribute in CSS."
-    },
-    {
-      id: 3,
-      question: "Which property is used to create space between elements?",
-      options: ["spacing", "margin", "padding", "gap"],
-      answer: "margin",
-      difficulty: "medium",
-      category: "CSS Layout",
-      explanation: "Margin creates space outside an element's border, while padding creates space inside."
-    },
-    {
-      id: 4,
-      question: "What does CSS stand for?",
-      options: [
-        "Computer Style Sheets",
-        "Creative Style System",
-        "Cascading Style Sheets",
-        "Colorful Style Sheets"
-      ],
-      answer: "Cascading Style Sheets",
-      difficulty: "easy",
-      category: "CSS Basics",
-      explanation: "CSS stands for Cascading Style Sheets, which is used to style web pages."
-    },
-  ],
 };
 
-const TOTAL_ROUNDS = 10;
+const TOTAL_ROUNDS = 5;
 const COUNTDOWN_TIME = 20;
 const DIFFICULTY_POINTS = {
   easy: 5,
