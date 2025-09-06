@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
 import { redirect } from "next/navigation";
-import LogoutButton from "./components/LogoutButton";
+import LogoutButton from "./components/LogoutButton"; // ✅ client component
 import Sidebar from "./components/SideBar";
-import DashboardContent from "./components/DashboardContent";
+import DashboardContent from "./components/DashboardContent"; // ✅ make sure you have this
 
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
@@ -12,23 +12,24 @@ export default async function DashboardPage() {
     redirect("/login");
   }
 
+  // ✅ fallback ensures username is always a string
+  const username = session.user?.username || session.user?.email || "Guest";
+
   return (
-    <div className="flex h-screen">
+    <div className="flex min-h-screen">
       {/* Sidebar */}
       <Sidebar />
 
       {/* Main Content */}
-      <div className="flex-1 p-6 overflow-y-auto">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-semibold">
-            Welcome, {session.user?.username || session.user?.email}
-          </h2>
-          <LogoutButton />
-        </div>
+      <main className="flex-1 p-6 bg-gray-50">
+        <h2 className="text-xl font-semibold mb-4">
+          Welcome, {username}!
+        </h2>
 
-        {/* Dashboard Main Content (game squares + chat) */}
-        <DashboardContent username={session.user?.username || "You"} />
-      </div>
+        <DashboardContent username={username} />
+
+        
+      </main>
     </div>
   );
 }
