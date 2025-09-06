@@ -43,11 +43,17 @@ export default function Sidebar() {
     <aside className="fixed left-0 top-0 h-full w-64 bg-white border-r border-gray-200 flex flex-col shadow-sm z-10">
       {/* Logo */}
       <div className="p-6 text-xl font-bold border-b border-gray-200 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-        <span className="flex items-center gap-2">
-          <FaGamepad className="w-6 h-6" />
-          Coding Clash
-        </span>
-      </div>
+  <span className="flex items-center gap-2">
+    <img 
+      src="/logo.png"
+      alt="Coding Clash Logo"
+      className="w-6 h-6 object-contain no-drag"
+      draggable="false"
+      onContextMenu={(e) => e.preventDefault()} // Prevent right-click save
+    />
+    Coding Clash
+  </span>
+</div>
 
       {/* Navigation */}
       <nav className="flex-1 p-4 space-y-2 mt-4">
