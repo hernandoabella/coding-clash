@@ -1,8 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
 import { redirect } from "next/navigation";
-import LogoutButton from "./components/LogoutButton"; // ✅ client component
-import Sidebar from "./components/SideBar";
+import Sidebar from "../components/SideBar";
 import DashboardContent from "./components/DashboardContent"; // ✅ make sure you have this
 
 export default async function DashboardPage() {
@@ -27,8 +26,6 @@ export default async function DashboardPage() {
         </h2>
 
         <DashboardContent username={username} />
-
-        
       </main>
     </div>
   );
