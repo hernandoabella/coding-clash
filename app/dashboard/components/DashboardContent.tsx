@@ -1,29 +1,63 @@
 "use client";
 
-import { FaUserFriends, FaRobot } from "react-icons/fa";
+import { useState } from "react";
+import Quiz from "./Quiz";
 
-export default function DashboardContent({ username }: { username: string }) {
+interface Props {
+  username: string;
+}
+
+export default function DashboardContent({ username }: Props) {
+  const [mode, setMode] = useState<"none" | "bot" | "pvp">("none");
+
   return (
-    <div className="flex gap-6 p-6">
-      {/* Play vs Opponent */}
-      <div className="flex-1 bg-white shadow-md rounded-xl p-6 flex flex-col items-center justify-center">
-        <FaUserFriends className="text-blue-500 text-5xl mb-4" />
-        <h3 className="text-xl font-bold mb-2">
-          {username} vs Random Opponent
-        </h3>
-        <button className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-          Play Now
-        </button>
-      </div>
+    <div>
+      {/* Squares Row */}
+      {mode === "none" && (
+        <div className="grid grid-cols-2 gap-6">
+          {/* Play vs Random Opponent */}
+          <div className="bg-white shadow-md rounded-xl p-6 text-center">
+            <h3 className="text-lg font-semibold mb-4">
+              {username} vs Random Opponent
+            </h3>
+            <button
+              onClick={() => setMode("pvp")}
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              Start Match
+            </button>
+          </div>
 
-      {/* Play vs Bot */}
-      <div className="flex-1 bg-white shadow-md rounded-xl p-6 flex flex-col items-center justify-center">
-        <FaRobot className="text-green-500 text-5xl mb-4" />
-        <h3 className="text-xl font-bold mb-2">{username} vs Bot</h3>
-        <button className="mt-4 px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">
-          Play Now
-        </button>
-      </div>
+          {/* Play with Bot */}
+          <div className="bg-white shadow-md rounded-xl p-6 text-center">
+            <h3 className="text-lg font-semibold mb-4">
+              {username} vs Bot
+            </h3>
+            <button
+              onClick={() => setMode("bot")}
+              className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+            >
+              Start vs Bot
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Bot Quiz Mode */}
+      {mode === "bot" && <Quiz />}
+
+      {/* Placeholder for PvP */}
+      {mode === "pvp" && (
+        <div className="p-6 bg-white rounded-xl shadow text-center">
+          <h3 className="text-lg font-semibold">Multiplayer Coming Soon 🚀</h3>
+          <button
+            onClick={() => setMode("none")}
+            className="mt-4 px-4 py-2 rounded bg-gray-200 hover:bg-gray-300"
+          >
+            Back
+          </button>
+        </div>
+      )}
     </div>
   );
 }
