@@ -165,8 +165,7 @@ export default function DashboardContent() {
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-6 text-white shadow-lg">
         <div className="flex justify-between items-start">
           <div>
-            <h1 className="text-3xl font-bold mb-2">Welcome back, {username}! 👋</h1>
-            <p className="opacity-90">Ready to test your coding knowledge today?</p>
+            <h1 className="text-3xl font-bold mb-2">{username}</h1>
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 bg-white/20 px-3 py-2 rounded-lg">
