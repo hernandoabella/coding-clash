@@ -356,8 +356,43 @@ export default function ProfilePage() {
               </div>
             </div>
 
+            
+          </div>
+
+          {/* Right Column - Stats and Badges */}
+          <div className="lg:col-span-3">
+            {/* Tab Navigation */}
+            <div className="bg-white rounded-2xl shadow-lg mb-6">
+              <div className="flex border-b border-gray-200">
+                <button
+                  onClick={() => setActiveTab("overview")}
+                  className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${activeTab === "overview" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700"}`}
+                >
+                  Overview
+                </button>
+                <button
+                  onClick={() => setActiveTab("stats")}
+                  className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${activeTab === "stats" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700"}`}
+                >
+                  Statistics
+                </button>
+                <button
+                  onClick={() => setActiveTab("badges")}
+                  className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${activeTab === "badges" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700"}`}
+                >
+                  Badges
+                </button>
+                <button
+                  onClick={() => setActiveTab("activity")}
+                  className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${activeTab === "activity" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700"}`}
+                >
+                  Activity
+                </button>
+              </div>
+            </div>
+
             {/* Rank Card */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 mt-6">
+            <div className="bg-white rounded-2xl shadow-lg p-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold text-gray-900">Rank & Stats</h3>
                 <FaTrophy className="text-yellow-500" />
@@ -392,39 +427,6 @@ export default function ProfilePage() {
                   <span className="text-gray-600">Total XP</span>
                   <span className="font-medium">{profile.stats.totalXP}</span>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column - Stats and Badges */}
-          <div className="lg:col-span-3">
-            {/* Tab Navigation */}
-            <div className="bg-white rounded-2xl shadow-lg mb-6">
-              <div className="flex border-b border-gray-200">
-                <button
-                  onClick={() => setActiveTab("overview")}
-                  className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${activeTab === "overview" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700"}`}
-                >
-                  Overview
-                </button>
-                <button
-                  onClick={() => setActiveTab("stats")}
-                  className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${activeTab === "stats" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700"}`}
-                >
-                  Statistics
-                </button>
-                <button
-                  onClick={() => setActiveTab("badges")}
-                  className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${activeTab === "badges" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700"}`}
-                >
-                  Badges
-                </button>
-                <button
-                  onClick={() => setActiveTab("activity")}
-                  className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${activeTab === "activity" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:text-gray-700"}`}
-                >
-                  Activity
-                </button>
               </div>
             </div>
 
