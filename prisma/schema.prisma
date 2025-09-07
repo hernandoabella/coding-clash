@@ -8,9 +8,172 @@ generator client {
 }
 
 model User {
-  id       String   @id @default(cuid())
-  email    String   @unique
-  username String   @unique
-  password String
-  createdAt DateTime @default(now())
+  id              String        @id @default(cuid())
+  email           String        @unique
+  username        String        @unique
+  password        String        // hashed
+  xp              Int           @default(0)
+  level           Int           @default(1)
+  gamesPlayed     Int           @default(0)
+  correctAnswers  Int           @default(0)
+  totalAnswers    Int           @default(0)
+  maxStreak       Int           @default(0)
+  accuracy        Float         @default(0)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  gameSessions    GameSession[]
+  userAnswers     UserAnswer[]
+  achievements    Achievement[]
+  weaponInventory WeaponInventory[]
+  notifications   Notification[]    // <-- Added
+  dailyActivities DailyActivity[]   // <-- Added
+
+  @@map("users")
+}
+
+model GameSession {
+  id              String       @id @default(cuid())
+  userId          String
+  language        String
+  difficulty      String
+  score           Int          @default(0)
+  totalQuestions  Int          @default(0)
+  correctAnswers  Int          @default(0)
+  maxStreak       Int          @default(0)
+  accuracy        Float        @default(0)
+  completed       Boolean      @default(false)
+  timeSpent       Int          // in seconds
+  xpEarned        Int          @default(0)
+  startTime       DateTime     @default(now())
+  endTime         DateTime?
+  status          GameStatus   @default(ACTIVE)
+  weaponUsed      String?
+
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userAnswers     UserAnswer[]
+  dailyActivities DailyActivity[] // <-- Added
+
+  @@map("game_sessions")
+}
+
+model Question {
+  id            String   @id @default(cuid())
+  language      String
+  difficulty    String
+  question      String
+  options       Json
+  correctAnswer String
+  explanation   String?
+  category      String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  userAnswers   UserAnswer[]
+
+  @@map("questions")
+}
+
+model UserAnswer {
+  id             String       @id @default(cuid())
+  userId         String
+  sessionId      String
+  questionId     String
+  selectedAnswer String
+  isCorrect      Boolean
+  timeSpent      Int
+  answeredAt     DateTime     @default(now())
+  streakAtAnswer Int          @default(0)
+
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  gameSession    GameSession  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  question       Question?    @relation(fields: [questionId], references: [id])
+
+  @@map("user_answers")
+}
+
+model Achievement {
+  id              String         @id @default(cuid())
+  userId          String
+  achievementType AchievementType
+  unlockedAt      DateTime       @default(now())
+  progress        Int?
+
+  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  notifications   Notification[] // <-- Added
+
+  @@map("achievements")
+}
+
+model WeaponInventory {
+  id        String   @id @default(cuid())
+  userId    String
+  weaponId  String
+  quantity  Int      @default(0)
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, weaponId])
+  @@map("weapon_inventory")
+}
+
+model Notification {
+  id            String       @id @default(cuid())
+  userId        String
+  type          String
+  data          Json
+  read          Boolean      @default(false)
+  readAt        DateTime?
+  priority      Int          @default(1)
+  expiresAt     DateTime?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  achievementId String?
+  achievement   Achievement? @relation(fields: [achievementId], references: [id])
+
+  @@map("notifications")
+  @@index([userId, read])
+  @@index([expiresAt])
+}
+
+model DailyActivity {
+  id            String       @id @default(cuid())
+  userId        String
+  activityType  String
+  activityDate  DateTime
+  activityCount Int          @default(1)
+  totalXp       Int          @default(0)
+  gameSessionId String?
+  timezone      String       @default("UTC")
+  lastActivityAt DateTime     @default(now())
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  gameSession   GameSession? @relation(fields: [gameSessionId], references: [id])
+
+  @@map("daily_activities")
+  @@unique([userId, activityDate])
+  @@index([userId, activityDate])
+  @@index([activityDate])
+}
+
+// Enums
+enum GameStatus {
+  ACTIVE
+  COMPLETED
+  ABANDONED
+  TIMED_OUT
+}
+
+enum AchievementType {
+  FIRST_GAME
+  PERFECT_GAME
+  STREAK_MASTER
+  SPEED_DEMON
+  LANGUAGE_MASTER
+  DAILY_CHALLENGE
+  WEEKLY_STREAK
 }
