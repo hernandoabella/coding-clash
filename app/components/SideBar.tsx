@@ -4,13 +4,14 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
-import { FaHome, FaUser, FaCog, FaSignOutAlt, FaGamepad, FaTrophy, FaComments } from "react-icons/fa";
+import { FaHome, FaUser, FaCog, FaSignOutAlt, FaGamepad, FaTrophy, FaComments, FaCrown } from "react-icons/fa";
 
 const navItems = [
   { href: "/dashboard", label: "Game", icon: FaGamepad },
   { href: "/leaderboard", label: "Leaderboard", icon: FaTrophy },
+  { href: "/achievements", label: "Achievements", icon: FaCrown },
   // Replace the VIP menu item with this
-{ href: "/VIP", label: "VIP", icon: () => (
+{ href: "/vip", label: "VIP", icon: () => (
   <div className="relative">
     <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
       {/* Crown Base */}
@@ -32,7 +33,7 @@ const navItems = [
     <div className="absolute inset-0 rounded-full bg-yellow-400 opacity-20 animate-pulse"></div>
   </div>
 ) },
-  { href: "/profile", label: "Profile", icon: FaUser },
+  { href: "/profile/user", label: "Profile", icon: FaUser },
   { href: "/settings", label: "Settings", icon: FaCog },
 ];
 
