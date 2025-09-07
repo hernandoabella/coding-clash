@@ -21,11 +21,7 @@ export default async function DashboardPage() {
 
       {/* Main Content */}
       <main className="flex-1 p-6 bg-gray-50">
-        <h2 className="text-xl font-semibold mb-4">
-          Welcome, {username}!
-        </h2>
-
-        <DashboardContent username={username} />
+        <DashboardContent />
       </main>
     </div>
   );
