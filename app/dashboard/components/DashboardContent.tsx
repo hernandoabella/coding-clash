@@ -3,46 +3,161 @@
 import { useState, useEffect } from "react";
 import Quiz from "./Quiz";
 import { FaFire, FaTrophy, FaUsers, FaRobot, FaCrown, FaChartLine, FaBell, FaGamepad } from "react-icons/fa";
+import { useSession } from "next-auth/react";
 
-interface Props {
-  username: string;
+interface UserStats {
+  rank: number;
+  wins: number;
+  losses: number;
+  winRate: number;
+  totalXP: number;
+  level: number;
+  gamesPlayed: number;
+  correctAnswers: number;
+  totalAnswers: number;
+  maxStreak: number;
+  accuracy: number;
 }
 
-export default function DashboardContent({ username }: Props) {
-  const [mode, setMode] = useState<"none" | "bot" | "pvp">("none");
-  const [dailyStreak, setDailyStreak] = useState(5);
-  const [notifications, setNotifications] = useState(3);
-  const [onlinePlayers, setOnlinePlayers] = useState(1247);
+interface Achievement {
+  id: string;
+  name: string;
+  icon: string;
+  description: string;
+  earned: boolean;
+}
 
-  // Simulate live player count
+interface LeaderboardPlayer {
+  rank: number;
+  name: string;
+  score: number;
+  isCurrentUser?: boolean;
+}
+
+interface GameSession {
+  id: string;
+  score: number;
+  correctAnswers: number;
+  totalQuestions: number;
+  language: string;
+  difficulty: string;
+  completed: boolean;
+  createdAt: string;
+}
+
+export default function DashboardContent() {
+  const [mode, setMode] = useState<"none" | "bot" | "pvp">("none");
+  const [dailyStreak, setDailyStreak] = useState(0);
+  const [notifications, setNotifications] = useState(0);
+  const [onlinePlayers, setOnlinePlayers] = useState(0);
+  const [userStats, setUserStats] = useState<UserStats | null>(null);
+  const [recentAchievements, setRecentAchievements] = useState<Achievement[]>([]);
+  const [leaderboardPreview, setLeaderboardPreview] = useState<LeaderboardPlayer[]>([]);
+  const [recentGames, setRecentGames] = useState<GameSession[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const { data: session } = useSession();
+
+  // Fetch user data from the database
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (!session?.user?.id) return;
+      
+      try {
+        setIsLoading(true);
+        
+        // Fetch user stats
+        const statsResponse = await fetch('/api/user/stats');
+        if (statsResponse.ok) {
+          const statsData = await statsResponse.json();
+          setUserStats({
+            rank: statsData.rank || 42,
+            wins: Math.floor((statsData.gamesPlayed || 0) * (statsData.winRate || 0.67)),
+            losses: Math.floor((statsData.gamesPlayed || 0) * (1 - (statsData.winRate || 0.67))),
+            winRate: Math.round((statsData.accuracy || 0) * 100),
+            totalXP: statsData.xp || 0,
+            level: statsData.level || 1,
+            gamesPlayed: statsData.gamesPlayed || 0,
+            correctAnswers: statsData.correctAnswers || 0,
+            totalAnswers: statsData.totalAnswers || 0,
+            maxStreak: statsData.maxStreak || 0,
+            accuracy: statsData.accuracy || 0,
+          });
+        }
+
+        // Fetch achievements
+        const achievementsResponse = await fetch('/api/user/achievements');
+        if (achievementsResponse.ok) {
+          const achievementsData = await achievementsResponse.json();
+          setRecentAchievements(achievementsData.slice(0, 3));
+        }
+
+        // Fetch leaderboard
+        const leaderboardResponse = await fetch('/api/leaderboard?limit=4');
+        if (leaderboardResponse.ok) {
+          const leaderboardData = await leaderboardResponse.json();
+          setLeaderboardPreview(leaderboardData);
+        }
+
+        // Fetch recent games
+        const gamesResponse = await fetch('/api/user/games?limit=5');
+        if (gamesResponse.ok) {
+          const gamesData = await gamesResponse.json();
+          setRecentGames(gamesData);
+        }
+
+        // Fetch online players count
+        const onlineResponse = await fetch('/api/online-players');
+        if (onlineResponse.ok) {
+          const onlineData = await onlineResponse.json();
+          setOnlinePlayers(onlineData.count);
+        }
+
+        // Fetch notifications
+        const notificationsResponse = await fetch('/api/user/notifications');
+        if (notificationsResponse.ok) {
+          const notificationsData = await notificationsResponse.json();
+          setNotifications(notificationsData.unreadCount);
+        }
+
+        // Fetch daily streak
+        const streakResponse = await fetch('/api/user/streak');
+        if (streakResponse.ok) {
+          const streakData = await streakResponse.json();
+          setDailyStreak(streakData.streak);
+        }
+
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, [session]);
+
+  // Simulate live player count updates
   useEffect(() => {
     const interval = setInterval(() => {
-      setOnlinePlayers(prev => prev + Math.floor(Math.random() * 5) - 2);
+      setOnlinePlayers(prev => {
+        const change = Math.floor(Math.random() * 5) - 2;
+        return Math.max(0, prev + change);
+      });
     }, 10000);
     
     return () => clearInterval(interval);
   }, []);
 
-  const stats = {
-    rank: 42,
-    wins: 28,
-    losses: 14,
-    winRate: 67,
-    totalXP: 3250,
-  };
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
 
-  const recentAchievements = [
-    { id: 1, name: "First Blood", icon: "🩸", description: "Win your first match", earned: true },
-    { id: 2, name: "Code Wizard", icon: "🧙", description: "Answer 50 questions correctly", earned: true },
-    { id: 3, name: "Speed Demon", icon: "⚡", description: "Answer in under 5 seconds", earned: false },
-  ];
-
-  const leaderboardPreview = [
-    { rank: 1, name: "CodeMaster", score: 9850 },
-    { rank: 2, name: "SyntaxSniper", score: 8720 },
-    { rank: 3, name: "BugHunter", score: 8450 },
-    { rank: 42, name: username, score: 3250, isCurrentUser: true },
-  ];
+  const username = session?.user?.username || "Player";
 
   return (
     <div className="space-y-8">
@@ -72,26 +187,26 @@ export default function DashboardContent({ username }: Props) {
         {/* Stats Overview */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
           <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-            <div className="text-2xl font-bold">#{stats.rank}</div>
+            <div className="text-2xl font-bold">#{userStats?.rank || 42}</div>
             <div className="text-sm opacity-80">Global Rank</div>
           </div>
           <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-            <div className="text-2xl font-bold">{stats.winRate}%</div>
+            <div className="text-2xl font-bold">{userStats?.winRate || 67}%</div>
             <div className="text-sm opacity-80">Win Rate</div>
           </div>
           <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-            <div className="text-2xl font-bold">{stats.wins}</div>
+            <div className="text-2xl font-bold">{userStats?.wins || 28}</div>
             <div className="text-sm opacity-80">Victories</div>
           </div>
           <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-            <div className="text-2xl font-bold">{stats.totalXP}</div>
+            <div className="text-2xl font-bold">{userStats?.totalXP || 3250}</div>
             <div className="text-sm opacity-80">Total XP</div>
           </div>
         </div>
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left Column - Game Modes */}
         <div className="lg:col-span-2 space-y-6">
           {/* Game Mode Cards */}
@@ -216,7 +331,7 @@ export default function DashboardContent({ username }: Props) {
           )}
         </div>
 
-        {/* Right Column - Side Content */}
+        {/* Right Column - Stats and Info */}
         <div className="space-y-6">
           {/* Leaderboard Preview */}
           <div className="bg-white rounded-2xl shadow-lg p-6">
@@ -275,46 +390,41 @@ export default function DashboardContent({ username }: Props) {
             </button>
           </div>
 
-          {/* Live Activity Feed */}
+          {/* Recent Games */}
           <div className="bg-white rounded-2xl shadow-lg p-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <FaChartLine className="text-green-500" /> Live Activity
+              <FaChartLine className="text-green-500" /> Recent Games
             </h2>
             <div className="space-y-3">
-              {[
-                { user: "CodeWizard", action: "just defeated", opponent: "SyntaxSniper", time: "2 min ago" },
-                { user: "BugHunter", action: "earned", achievement: "JavaScript Expert", time: "5 min ago" },
-                { user: "DevMaster", action: "reached", rank: "Top 10", time: "10 min ago" },
-                { user: "ByteSize", action: "completed", challenge: "Speed Run", time: "15 min ago" },
-              ].map((activity, index) => (
-                <div key={index} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
-                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm font-bold">
-                    {activity.user.charAt(0)}
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-sm text-gray-900">
-                      <span className="font-medium">{activity.user}</span> {activity.action}{' '}
-                      {activity.opponent && <span className="font-medium">{activity.opponent}</span>}
-                      {activity.achievement && <span className="font-medium"> {activity.achievement}</span>}
-                      {activity.rank && <span className="font-medium"> {activity.rank}</span>}
-                      {activity.challenge && <span className="font-medium"> {activity.challenge}</span>}
+              {recentGames.length > 0 ? (
+                recentGames.map((game) => (
+                  <div key={game.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div>
+                      <div className="font-medium text-gray-900">{game.language} - {game.difficulty}</div>
+                      <div className="text-sm text-gray-500">
+                        {game.correctAnswers}/{game.totalQuestions} correct
+                      </div>
                     </div>
-                    <div className="text-xs text-gray-500">{activity.time}</div>
+                    <div className="text-right">
+                      <div className="font-semibold text-gray-700">{game.score} pts</div>
+                      <div className={`text-xs ${game.completed ? 'text-green-600' : 'text-red-600'}`}>
+                        {game.completed ? 'Completed' : 'Incomplete'}
+                      </div>
+                    </div>
                   </div>
+                ))
+              ) : (
+                <div className="text-center text-gray-500 py-4">
+                  No games played yet
                 </div>
-              ))}
+              )}
             </div>
+            <button className="w-full mt-4 text-center text-blue-600 hover:text-blue-800 font-medium text-sm">
+              View Game History →
+            </button>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes progressBar {
-          0% { width: 0%; }
-          50% { width: 70%; }
-          100% { width: 100%; }
-        }
-      `}</style>
     </div>
   );
 }
