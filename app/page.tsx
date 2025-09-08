@@ -10,13 +10,13 @@ import TopPlayers from "./landing_page/components/TopPlayers";
 export default function Home() {
   
   return (
-    <main>
+    <div>
       <Header />
       <Hero />
       <TopPlayers />
       <Features />
       <Testimonials />
       <Footer />
-    </main>
+    </div>
   );
 }
