@@ -18,16 +18,16 @@ model User {
   correctAnswers  Int           @default(0)
   totalAnswers    Int           @default(0)
   maxStreak       Int           @default(0)
+  winRate         Float         @default(0)
   accuracy        Float         @default(0)
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
-
   gameSessions    GameSession[]
   userAnswers     UserAnswer[]
   achievements    Achievement[]
   weaponInventory WeaponInventory[]
-  notifications   Notification[]    // <-- Added
-  dailyActivities DailyActivity[]   // <-- Added
+  notifications   Notification[]    
+  dailyActivities DailyActivity[]  
 
   @@map("users")
 }
@@ -52,7 +52,7 @@ model GameSession {
 
   user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   userAnswers     UserAnswer[]
-  dailyActivities DailyActivity[] // <-- Added
+  dailyActivities DailyActivity[] 
 
   @@map("game_sessions")
 }
@@ -100,7 +100,7 @@ model Achievement {
   progress        Int?
 
   user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  notifications   Notification[] // <-- Added
+  notifications   Notification[] 
 
   @@map("achievements")
 }
