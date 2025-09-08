@@ -1,8 +1,8 @@
 // app/api/game/session/[id]/route.ts
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/app/lib/db'
+import { prisma } from '../../../../lib/db'
 import { getServerSession } from 'next-auth/next'
-import { authOptions } from '@/app/lib/auth'
+import { authOptions } from '../../../../lib/auth'
 
 export async function GET(
   req: NextRequest,
