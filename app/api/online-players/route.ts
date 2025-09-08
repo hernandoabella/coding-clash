@@ -1,6 +1,6 @@
 // app/api/online-players/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/app/lib/db';
+import { prisma } from './../../lib/db';
 
 
 // In-memory store for active sessions (for real-time online tracking)
