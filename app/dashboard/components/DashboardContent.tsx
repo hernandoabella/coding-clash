@@ -54,7 +54,7 @@ export default function DashboardContent() {
   const [recentAchievements, setRecentAchievements] = useState<Achievement[]>([]);
   const [leaderboardPreview, setLeaderboardPreview] = useState<LeaderboardPlayer[]>([]);
   const [recentGames, setRecentGames] = useState<GameSession[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { data: session } = useSession();
 
@@ -64,7 +64,7 @@ export default function DashboardContent() {
       if (!session?.user?.id) return;
       
       try {
-        setIsLoading(true);
+        setIsLoading(false);
         
         // Fetch user stats
         const statsResponse = await fetch('/api/user/stats');
@@ -237,8 +237,8 @@ export default function DashboardContent() {
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <FaRobot className="w-8 h-8 text-green-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Practice with AI</h3>
-                <p className="text-gray-600 mb-4">Improve your skills against computer opponents</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Practice</h3>
+                <p className="text-gray-600 mb-4">Improve your skills against computer</p>
                 <div className="flex justify-center gap-2 mb-4">
                   {["Easy", "Medium", "Hard"].map((difficulty) => (
                     <span key={difficulty} className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
@@ -295,7 +295,7 @@ export default function DashboardContent() {
           )}
 
           {/* Quick Play Challenges */}
-          {mode === "none" && (
+          {/* {mode === "none" && (
             <div className="bg-white rounded-2xl shadow-lg p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
                 <FaFire className="text-orange-500" /> Daily Challenges
@@ -327,7 +327,7 @@ export default function DashboardContent() {
                 </div>
               </div>
             </div>
-          )}
+          )} */}
         </div>
 
         {/* Right Column - Stats and Info */}
