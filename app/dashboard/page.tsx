@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/lib/auth";
+import { authOptions } from "../lib/auth";
 import { redirect } from "next/navigation";
 import Sidebar from "../components/SideBar";
 import DashboardContent from "./components/DashboardContent"; // ✅ make sure you have this
