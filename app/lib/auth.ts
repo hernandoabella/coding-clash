@@ -13,6 +13,7 @@ declare module "next-auth" {
 
   interface Session {
     user: {
+      maxStreak: number;
       id: string;
       email: string;
       username: string;
