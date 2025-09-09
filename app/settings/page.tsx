@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import DashboardLayout from "@/app/dashboard/layout";
+import DashboardLayout from "../dashboard/layout";
 import { FaBell, FaPalette, FaUserShield, FaQuestionCircle, FaSave, FaVolumeUp, FaLanguage, FaKeyboard } from "react-icons/fa";
 
 export default function SettingsPage() {
