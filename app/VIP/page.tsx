@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import DashboardLayout from "@/app/dashboard/layout";
+import DashboardLayout from "../dashboard/layout";
 import { FaCrown, FaGem, FaCoins, FaShoppingCart, FaCheck, FaFire, FaStar, FaShieldAlt, FaMagic, FaRocket } from "react-icons/fa";
 
 interface PricingTier {
