@@ -333,7 +333,7 @@ export default function DashboardContent() {
         {/* Right Column - Stats and Info */}
         <div className="space-y-6">
           {/* Leaderboard Preview */}
-          <div className="bg-white rounded-2xl shadow-lg p-6">
+          {/* <div className="bg-white rounded-2xl shadow-lg p-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
               <FaTrophy className="text-yellow-500" /> Top Players
             </h2>
@@ -355,10 +355,10 @@ export default function DashboardContent() {
             <button className="w-full mt-4 text-center text-blue-600 hover:text-blue-800 font-medium text-sm">
               View Full Leaderboard →
             </button>
-          </div>
+          </div> */}
 
           {/* Recent Achievements */}
-          <div className="bg-white rounded-2xl shadow-lg p-6">
+          {/* <div className="bg-white rounded-2xl shadow-lg p-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
               <FaCrown className="text-purple-500" /> Achievements
             </h2>
@@ -387,10 +387,10 @@ export default function DashboardContent() {
             <button className="w-full mt-4 text-center text-blue-600 hover:text-blue-800 font-medium text-sm">
               View All Achievements →
             </button>
-          </div>
+          </div> */}
 
           {/* Recent Games */}
-          <div className="bg-white rounded-2xl shadow-lg p-6">
+          {/* <div className="bg-white rounded-2xl shadow-lg p-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
               <FaChartLine className="text-green-500" /> Recent Games
             </h2>
@@ -421,7 +421,7 @@ export default function DashboardContent() {
             <button className="w-full mt-4 text-center text-blue-600 hover:text-blue-800 font-medium text-sm">
               View Game History →
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
