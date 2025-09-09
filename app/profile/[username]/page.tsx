@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import DashboardLayout from "@/app/dashboard/layout";
+import DashboardLayout from "../../dashboard/layout";
 import { 
   FaUser, FaTrophy, FaCode, FaEdit, FaSave, FaTimes, FaChartLine, 
   FaCalendarAlt, FaMedal, FaGithub, FaTwitter, FaLinkedin, FaGlobe, 
