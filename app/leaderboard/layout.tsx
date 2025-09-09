@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaGamepad, FaChartBar, FaCog } from "react-icons/fa";
-import ChatBox from "@/app/components/ChatBox";
+// import ChatBox from "@/app/components/ChatBox";
 import Sidebar from "../components/SideBar";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -23,7 +23,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Main content */}
       <main className="flex-1 p-6 overflow-auto">{children}</main>
     
-      <ChatBox />
+      {/* <ChatBox /> */}
     </div>
   );
 }
