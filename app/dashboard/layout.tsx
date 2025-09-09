@@ -3,7 +3,7 @@
 
 import { ReactNode } from "react";
 import Sidebar from "./../components/SideBar";
-import Chatbox from "./../components/ChatBox";
+// import Chatbox from "./../components/ChatBox";
 import { SessionProvider } from "next-auth/react";
 
 interface Props {
@@ -20,7 +20,7 @@ export default function DashboardLayout({ children }: Props) {
             {children}
           </div>
         </main>
-        <Chatbox />
+        {/* <Chatbox /> */}
       </div>
     </SessionProvider>
   );
