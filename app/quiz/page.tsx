@@ -27,8 +27,6 @@ type Question = {
   explanation?: string;
 };
 
-
-
 const questionsByLanguage: Record<string, Question[]> = {
   JavaScript: [
     {
