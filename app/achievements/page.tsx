@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import DashboardLayout from "@/app/dashboard/layout";
+import DashboardLayout from "../dashboard/layout";
 import { FaTrophy, FaMedal, FaLock, FaCheck, FaStar, FaFilter, FaFire, FaAward } from "react-icons/fa";
 
 interface Achievement {
