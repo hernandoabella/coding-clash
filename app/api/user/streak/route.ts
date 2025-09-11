@@ -1,70 +1,95 @@
-// app/api/user/streak/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "../../../lib/db";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "../../../lib/auth";
+import { getServerSession } from "next-auth";
+import { PrismaClient } from "@prisma/client";
 
-// GET streak info
-export async function GET() {
-  const session = await getServerSession(authOptions);
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+const prisma = new PrismaClient();
 
-  const user = await prisma.user.findUnique({
-    where: { id: session.user.id },
-    select: { currentStreak: true, maxStreak: true, lastStreakDate: true }
-  });
-
-  return NextResponse.json(user);
-}
-
-// POST to increment/reset streak
-export async function POST() {
-  const session = await getServerSession(authOptions);
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  const user = await prisma.user.findUnique({ where: { id: session.user.id } });
-  if (!user) {
-    return NextResponse.json({ error: "User not found" }, { status: 404 });
-  }
-
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  let newStreak = user.currentStreak;
-  let maxStreak = user.maxStreak;
-
-  if (!user.lastStreakDate) {
-    newStreak = 1;
-  } else {
-    const last = new Date(user.lastStreakDate);
-    last.setHours(0, 0, 0, 0);
-
-    const diffDays = (today.getTime() - last.getTime()) / (1000 * 60 * 60 * 24);
-
-    if (diffDays === 1) {
-      newStreak = user.currentStreak + 1;
-    } else if (diffDays > 1) {
-      newStreak = 1; // reset
+export async function GET(request: NextRequest) {
+  try {
+    const session = await getServerSession();
+    
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    // Get user data with calculated stats
+    const user = await prisma.user.findUnique({
+      where: { id: session.user.id as string },
+      include: {
+        gameSessions: {
+          where: { completed: true },
+          orderBy: { startTime: 'desc' }
+        }
+      }
+    });
+
+    if (!user) {
+      return NextResponse.json(
+        { error: "User not found" },
+        { status: 404 }
+      );
+    }
+
+    // Calculate win rate (accuracy as win rate for quiz games)
+    const winRate = user.totalAnswers > 0 ? 
+      (user.correctAnswers / user.totalAnswers) : 0;
+
+    // Calculate accuracy percentage
+    const accuracy = user.totalAnswers > 0 ? 
+      (user.correctAnswers / user.totalAnswers) : 0;
+
+    // Get user rank (simplified ranking by XP)
+    const usersWithHigherXP = await prisma.user.count({
+      where: {
+        xp: {
+          gt: user.xp
+        }
+      }
+    });
+    const rank = usersWithHigherXP + 1;
+
+    // Calculate level based on XP (every 1000 XP = 1 level)
+    const level = Math.floor(user.xp / 1000) + 1;
+
+    const stats = {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      xp: user.xp,
+      level,
+      rank,
+      gamesPlayed: user.gamesPlayed,
+      correctAnswers: user.correctAnswers,
+      totalAnswers: user.totalAnswers,
+      maxStreak: user.maxStreak,
+      currentStreak: user.currentStreak,
+      winRate,
+      accuracy,
+      createdAt: user.createdAt,
+      // Additional computed stats
+      completedGames: user.gameSessions.length,
+      averageScore: user.gameSessions.length > 0 ? 
+        user.gameSessions.reduce((acc, game) => acc + game.score, 0) / user.gameSessions.length : 0,
+      totalTimeSpent: user.gameSessions.reduce((acc, game) => acc + game.timeSpent, 0),
+    };
+
+    // Update user level if it changed
+    if (level !== user.level) {
+      await prisma.user.update({
+        where: { id: user.id },
+        data: { level }
+      });
+    }
+
+    return NextResponse.json(stats);
+    
+  } catch (error) {
+    console.error("Error fetching user stats:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
+  } finally {
+    await prisma.$disconnect();
   }
-
-  if (newStreak > maxStreak) {
-    maxStreak = newStreak;
-  }
-
-  const updated = await prisma.user.update({
-    where: { id: session.user.id },
-    data: {
-      currentStreak: newStreak,
-      maxStreak,
-      lastStreakDate: today
-    },
-    select: { currentStreak: true, maxStreak: true, lastStreakDate: true }
-  });
-
-  return NextResponse.json(updated);
 }
