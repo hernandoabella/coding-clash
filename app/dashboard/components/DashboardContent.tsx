@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Quiz from "./Quiz";
+import Quiz from "./QuizModals";
 import { FaFire, FaTrophy, FaUsers, FaRobot, FaCrown, FaChartLine, FaBell, FaGamepad } from "react-icons/fa";
 import { useSession } from "next-auth/react";
 
@@ -42,38 +42,65 @@ interface GameSession {
   language: string;
   difficulty: string;
   completed: boolean;
-  createdAt: string;
+  startTime: string;
 }
 
 export default function DashboardContent() {
   const [mode, setMode] = useState<"none" | "bot" | "pvp">("none");
   const [dailyStreak, setDailyStreak] = useState(0);
   const [notifications, setNotifications] = useState(0);
-  const [onlinePlayers, setOnlinePlayers] = useState(0);
+  const [onlinePlayers, setOnlinePlayers] = useState(1247); // Initial static value
   const [userStats, setUserStats] = useState<UserStats | null>(null);
   const [recentAchievements, setRecentAchievements] = useState<Achievement[]>([]);
   const [leaderboardPreview, setLeaderboardPreview] = useState<LeaderboardPlayer[]>([]);
   const [recentGames, setRecentGames] = useState<GameSession[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isClient, setIsClient] = useState(false);
 
   const { data: session } = useSession();
+
+  // Set client-side flag to prevent hydration issues
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Fetch user data from the database
   useEffect(() => {
     const fetchUserData = async () => {
-      if (!session?.user?.id) return;
+      if (!session?.user?.id) {
+        setIsLoading(false);
+        return;
+      }
       
       try {
-        setIsLoading(false);
+        setIsLoading(true);
         
-        // Fetch user stats
-        const statsResponse = await fetch('/api/user/stats');
-        if (statsResponse.ok) {
-          const statsData = await statsResponse.json();
+        // Fetch all data in parallel
+        const [
+          statsResponse,
+          achievementsResponse,
+          leaderboardResponse,
+          gamesResponse,
+          onlineResponse,
+          notificationsResponse,
+          streakResponse
+        ] = await Promise.allSettled([
+          fetch('/api/user/stats'),
+          fetch('/api/user/achievements'),
+          fetch('/api/leaderboard?limit=4'),
+          fetch('/api/user/games?limit=5'),
+          fetch('/api/online-players'),
+          fetch('/api/user/notifications'),
+          fetch('/api/user/streak')
+        ]);
+
+        // Process user stats
+        if (statsResponse.status === 'fulfilled' && statsResponse.value.ok) {
+          const statsData = await statsResponse.value.json();
           setUserStats({
-            rank: statsData.rank || 42,
-            wins: Math.floor((statsData.gamesPlayed || 0) * (statsData.winRate || 0.67)),
-            losses: Math.floor((statsData.gamesPlayed || 0) * (1 - (statsData.winRate || 0.67))),
+            rank: statsData.rank || 0,
+            wins: Math.floor((statsData.gamesPlayed || 0) * (statsData.winRate || 0)),
+            losses: Math.floor((statsData.gamesPlayed || 0) * (1 - (statsData.winRate || 0))),
             winRate: Math.round((statsData.accuracy || 0) * 100),
             totalXP: statsData.xp || 0,
             level: statsData.level || 1,
@@ -85,46 +112,40 @@ export default function DashboardContent() {
           });
         }
 
-        // Fetch achievements
-        const achievementsResponse = await fetch('/api/user/achievements');
-        if (achievementsResponse.ok) {
-          const achievementsData = await achievementsResponse.json();
+        // Process achievements
+        if (achievementsResponse.status === 'fulfilled' && achievementsResponse.value.ok) {
+          const achievementsData = await achievementsResponse.value.json();
           setRecentAchievements(achievementsData.slice(0, 3));
         }
 
-        // Fetch leaderboard
-        const leaderboardResponse = await fetch('/api/leaderboard?limit=4');
-        if (leaderboardResponse.ok) {
-          const leaderboardData = await leaderboardResponse.json();
+        // Process leaderboard
+        if (leaderboardResponse.status === 'fulfilled' && leaderboardResponse.value.ok) {
+          const leaderboardData = await leaderboardResponse.value.json();
           setLeaderboardPreview(leaderboardData);
         }
 
-        // Fetch recent games
-        const gamesResponse = await fetch('/api/user/games?limit=5');
-        if (gamesResponse.ok) {
-          const gamesData = await gamesResponse.json();
+        // Process recent games
+        if (gamesResponse.status === 'fulfilled' && gamesResponse.value.ok) {
+          const gamesData = await gamesResponse.value.json();
           setRecentGames(gamesData);
         }
 
-        // Fetch online players count
-        const onlineResponse = await fetch('/api/online-players');
-        if (onlineResponse.ok) {
-          const onlineData = await onlineResponse.json();
+        // Process online players
+        if (onlineResponse.status === 'fulfilled' && onlineResponse.value.ok) {
+          const onlineData = await onlineResponse.value.json();
           setOnlinePlayers(onlineData.count);
         }
 
-        // Fetch notifications
-        const notificationsResponse = await fetch('/api/user/notifications');
-        if (notificationsResponse.ok) {
-          const notificationsData = await notificationsResponse.json();
-          setNotifications(notificationsData.unreadCount);
+        // Process notifications
+        if (notificationsResponse.status === 'fulfilled' && notificationsResponse.value.ok) {
+          const notificationsData = await notificationsResponse.value.json();
+          setNotifications(notificationsData.unreadCount || 0);
         }
 
-        // Fetch daily streak
-        const streakResponse = await fetch('/api/user/streak');
-        if (streakResponse.ok) {
-          const streakData = await streakResponse.json();
-          setDailyStreak(streakData.streak);
+        // Process daily streak
+        if (streakResponse.status === 'fulfilled' && streakResponse.value.ok) {
+          const streakData = await streakResponse.value.json();
+          setDailyStreak(streakData.streak || 0);
         }
 
       } catch (error) {
@@ -137,17 +158,19 @@ export default function DashboardContent() {
     fetchUserData();
   }, [session]);
 
-  // Simulate live player count updates
+  // Simulate live player count updates (only on client side)
   useEffect(() => {
+    if (!isClient) return;
+    
     const interval = setInterval(() => {
       setOnlinePlayers(prev => {
         const change = Math.floor(Math.random() * 5) - 2;
-        return Math.max(0, prev + change);
+        return Math.max(1200, prev + change);
       });
     }, 10000);
     
     return () => clearInterval(interval);
-  }, []);
+  }, [isClient]);
 
   if (isLoading) {
     return (
@@ -186,19 +209,19 @@ export default function DashboardContent() {
         {/* Stats Overview */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
           <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-            <div className="text-2xl font-bold">#{userStats?.rank || 42}</div>
+            <div className="text-2xl font-bold">#{userStats?.rank || '-'}</div>
             <div className="text-sm opacity-80">Global Rank</div>
           </div>
           <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-            <div className="text-2xl font-bold">{userStats?.winRate || 67}%</div>
+            <div className="text-2xl font-bold">{userStats?.winRate || 0}%</div>
             <div className="text-sm opacity-80">Win Rate</div>
           </div>
           <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-            <div className="text-2xl font-bold">{userStats?.wins || 28}</div>
+            <div className="text-2xl font-bold">{userStats?.wins || 0}</div>
             <div className="text-sm opacity-80">Victories</div>
           </div>
           <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-            <div className="text-2xl font-bold">{userStats?.totalXP || 3250}</div>
+            <div className="text-2xl font-bold">{userStats?.totalXP || 0}</div>
             <div className="text-sm opacity-80">Total XP</div>
           </div>
         </div>
@@ -293,110 +316,75 @@ export default function DashboardContent() {
               </div>
             </div>
           )}
-
-          {/* Quick Play Challenges */}
-          {/* {mode === "none" && (
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                <FaFire className="text-orange-500" /> Daily Challenges
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-xl border border-blue-200">
-                  <div className="text-lg font-semibold text-blue-800 mb-2">Speed Run</div>
-                  <p className="text-sm text-blue-600 mb-3">Answer 10 questions in record time</p>
-                  <div className="w-full bg-blue-200 rounded-full h-2">
-                    <div className="bg-blue-600 h-2 rounded-full" style={{ width: '30%' }}></div>
-                  </div>
-                  <div className="text-xs text-blue-700 mt-1">3/10 completed</div>
-                </div>
-                <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-xl border border-green-200">
-                  <div className="text-lg font-semibold text-green-800 mb-2">JavaScript Master</div>
-                  <p className="text-sm text-green-600 mb-3">Solve 5 JS challenges perfectly</p>
-                  <div className="w-full bg-green-200 rounded-full h-2">
-                    <div className="bg-green-600 h-2 rounded-full" style={{ width: '80%' }}></div>
-                  </div>
-                  <div className="text-xs text-green-700 mt-1">4/5 completed</div>
-                </div>
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-xl border border-purple-200">
-                  <div className="text-lg font-semibold text-purple-800 mb-2">Win Streak</div>
-                  <p className="text-sm text-purple-600 mb-3">Win 3 matches in a row</p>
-                  <div className="w-full bg-purple-200 rounded-full h-2">
-                    <div className="bg-purple-600 h-2 rounded-full" style={{ width: '66%' }}></div>
-                  </div>
-                  <div className="text-xs text-purple-700 mt-1">2/3 completed</div>
-                </div>
-              </div>
-            </div>
-          )} */}
         </div>
 
         {/* Right Column - Stats and Info */}
         <div className="space-y-6">
           {/* Leaderboard Preview */}
-          {/* <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <FaTrophy className="text-yellow-500" /> Top Players
-            </h2>
-            <div className="space-y-3">
-              {leaderboardPreview.map((player) => (
-                <div key={player.rank} className={`flex items-center justify-between p-3 rounded-lg ${player.isCurrentUser ? 'bg-blue-50 border border-blue-200' : 'bg-gray-50'}`}>
-                  <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold ${player.rank === 1 ? 'bg-yellow-500' : player.rank === 2 ? 'bg-gray-400' : player.rank === 3 ? 'bg-amber-700' : 'bg-gray-600'}`}>
-                      {player.rank}
+          {leaderboardPreview.length > 0 && (
+            <div className="bg-white rounded-2xl shadow-lg p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <FaTrophy className="text-yellow-500" /> Top Players
+              </h2>
+              <div className="space-y-3">
+                {leaderboardPreview.map((player) => (
+                  <div key={player.rank} className={`flex items-center justify-between p-3 rounded-lg ${player.isCurrentUser ? 'bg-blue-50 border border-blue-200' : 'bg-gray-50'}`}>
+                    <div className="flex items-center gap-3">
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold ${player.rank === 1 ? 'bg-yellow-500' : player.rank === 2 ? 'bg-gray-400' : player.rank === 3 ? 'bg-amber-700' : 'bg-gray-600'}`}>
+                        {player.rank}
+                      </div>
+                      <span className={`font-medium ${player.isCurrentUser ? 'text-blue-600' : 'text-gray-900'}`}>
+                        {player.isCurrentUser ? 'You' : player.name}
+                      </span>
                     </div>
-                    <span className={`font-medium ${player.isCurrentUser ? 'text-blue-600' : 'text-gray-900'}`}>
-                      {player.isCurrentUser ? 'You' : player.name}
-                    </span>
+                    <span className="font-semibold text-gray-700">{player.score}</span>
                   </div>
-                  <span className="font-semibold text-gray-700">{player.score}</span>
-                </div>
-              ))}
+                ))}
+              </div>
+              <button className="w-full mt-4 text-center text-blue-600 hover:text-blue-800 font-medium text-sm">
+                View Full Leaderboard →
+              </button>
             </div>
-            <button className="w-full mt-4 text-center text-blue-600 hover:text-blue-800 font-medium text-sm">
-              View Full Leaderboard →
-            </button>
-          </div> */}
+          )}
 
           {/* Recent Achievements */}
-          {/* <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <FaCrown className="text-purple-500" /> Achievements
-            </h2>
-            <div className="space-y-3">
-              {recentAchievements.map((achievement) => (
-                <div key={achievement.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                  <div className={`text-2xl ${achievement.earned ? '' : 'filter grayscale opacity-50'}`}>
-                    {achievement.icon}
-                  </div>
-                  <div className="flex-1">
-                    <div className={`font-medium ${achievement.earned ? 'text-gray-900' : 'text-gray-500'}`}>
-                      {achievement.name}
+          {recentAchievements.length > 0 && (
+            <div className="bg-white rounded-2xl shadow-lg p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <FaCrown className="text-purple-500" /> Recent Achievements
+              </h2>
+              <div className="space-y-3">
+                {recentAchievements.map((achievement) => (
+                  <div key={achievement.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                    <div className="text-2xl">
+                      {achievement.icon}
                     </div>
-                    <div className="text-sm text-gray-500">{achievement.description}</div>
-                  </div>
-                  {achievement.earned ? (
+                    <div className="flex-1">
+                      <div className="font-medium text-gray-900">
+                        {achievement.name}
+                      </div>
+                      <div className="text-sm text-gray-500">{achievement.description}</div>
+                    </div>
                     <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
                       <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                     </div>
-                  ) : (
-                    <div className="w-6 h-6 bg-gray-200 rounded-full"></div>
-                  )}
-                </div>
-              ))}
+                  </div>
+                ))}
+              </div>
+              <button className="w-full mt-4 text-center text-blue-600 hover:text-blue-800 font-medium text-sm">
+                View All Achievements →
+              </button>
             </div>
-            <button className="w-full mt-4 text-center text-blue-600 hover:text-blue-800 font-medium text-sm">
-              View All Achievements →
-            </button>
-          </div> */}
+          )}
 
           {/* Recent Games */}
-          {/* <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <FaChartLine className="text-green-500" /> Recent Games
-            </h2>
-            <div className="space-y-3">
-              {recentGames.length > 0 ? (
-                recentGames.map((game) => (
+          {recentGames.length > 0 && (
+            <div className="bg-white rounded-2xl shadow-lg p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <FaChartLine className="text-green-500" /> Recent Games
+              </h2>
+              <div className="space-y-3">
+                {recentGames.map((game) => (
                   <div key={game.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <div>
                       <div className="font-medium text-gray-900">{game.language} - {game.difficulty}</div>
@@ -411,17 +399,13 @@ export default function DashboardContent() {
                       </div>
                     </div>
                   </div>
-                ))
-              ) : (
-                <div className="text-center text-gray-500 py-4">
-                  No games played yet
-                </div>
-              )}
+                ))}
+              </div>
+              <button className="w-full mt-4 text-center text-blue-600 hover:text-blue-800 font-medium text-sm">
+                View Game History →
+              </button>
             </div>
-            <button className="w-full mt-4 text-center text-blue-600 hover:text-blue-800 font-medium text-sm">
-              View Game History →
-            </button>
-          </div> */}
+          )}
         </div>
       </div>
     </div>
