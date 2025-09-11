@@ -1,38 +1,15 @@
-// components/Sidebar.tsx
 "use client";
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
-import { FaHome, FaUser, FaCog, FaSignOutAlt, FaGamepad, FaTrophy, FaComments, FaCrown } from "react-icons/fa";
+import { FaHome, FaUser, FaCog, FaSignOutAlt, FaGamepad, FaTrophy, FaComments, FaCrown, FaStore } from "react-icons/fa";
 
 const navItems = [
   { href: "/dashboard", label: "Game", icon: FaGamepad },
   { href: "/leaderboard", label: "Leaderboard", icon: FaTrophy },
   { href: "/achievements", label: "Achievements", icon: FaCrown },
-  // Replace the VIP menu item with this
-{ href: "/vip", label: "VIP", icon: () => (
-  <div className="relative">
-    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
-      {/* Crown Base */}
-      <path 
-        d="M4 16L6 8L9 11L12 5L15 11L18 8L20 16H4Z" 
-        className="fill-yellow-400 stroke-yellow-600 stroke-1"
-      />
-      {/* Crown Jewels */}
-      <circle cx="7" cy="12" r="1" className="fill-purple-500" />
-      <circle cx="12" cy="8" r="1.2" className="fill-red-500" />
-      <circle cx="17" cy="12" r="1" className="fill-blue-500" />
-      {/* Shine Effect */}
-      <path 
-        d="M10 5L12 3L14 5" 
-        className="stroke-white stroke-1 opacity-70"
-      />
-    </svg>
-    {/* Subtle glow effect */}
-    <div className="absolute inset-0 rounded-full bg-yellow-400 opacity-20 animate-pulse"></div>
-  </div>
-) },
+  { href: "/store", label: "Store", icon: FaStore },
   { href: "/profile/user", label: "Profile", icon: FaUser },
   { href: "/settings", label: "Settings", icon: FaCog },
 ];
