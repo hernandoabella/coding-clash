@@ -1,0 +1,56 @@
+Profile
+Viewing user's profile
+
+Sarah Miller
+@user
+
+New York, NY, United States
+Software engineer at TechCorp. Love solving complex problems and participating in coding competitions.
+
+social links
+icons
+
+tags
+
+send message
+
+rank & States
+
+Performance Overview
+67
+Games Played
+45
+Wins
+67%
+Win Rate
+210
+Correct Answers
+
+Joined
+14/6/2023
+Current Streak
+3 days
+Total XP
+4870
+
+Recent Activity
+Won against Bot (Intermediate)
+
+10 minutes ago
+
++25 XP
+Completed JavaScript Challenge
+
+2 hours ago
+
++15 XP
+Lost against SarahM
+
+2 hours ago
+
+-10 XP
+
+Average Response Time
+11.2s
+Favorite Language
+JavaScript
