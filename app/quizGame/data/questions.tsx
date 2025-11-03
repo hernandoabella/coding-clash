@@ -47,5 +47,60 @@ export const questionsByLanguage: Record<string, Question[]> = {
       explanation:
         "The === operator performs strict equality comparison, checking both value and data type.",
     },
+    {
+      id: 5,
+      question: "Which method can be used to flatten nested arrays in JavaScript?",
+      options: ["flat()", "flatten()", "reduce()", "concat()"],
+      answer: "flat()",
+      difficulty: "hard",
+      category: "JavaScript Arrays",
+      explanation:
+        "The flat() method creates a new array with all sub-array elements concatenated into it recursively up to the specified depth.",
+    },
+    {
+      id: 6,
+      question: "What is a closure in JavaScript?",
+      options: [
+        "A function that calls itself",
+        "A function bundled with its lexical scope",
+        "An object property",
+        "A loop structure",
+      ],
+      answer: "A function bundled with its lexical scope",
+      difficulty: "hard",
+      category: "JavaScript Functions",
+      explanation:
+        "A closure is a function that remembers the variables from the place where it was defined, even if it is executed elsewhere.",
+    },
+    {
+      id: 7,
+      question: "Which of these is true about the 'this' keyword in JavaScript?",
+      options: [
+        "It always refers to the global object",
+        "It refers to the function's scope",
+        "It refers to the object that called the function",
+        "It refers to the previous variable",
+      ],
+      answer: "It refers to the object that called the function",
+      difficulty: "hard",
+      category: "JavaScript Context",
+      explanation:
+        "In JavaScript, 'this' refers to the object that invokes the current function, not necessarily where it was defined.",
+    },
+    {
+      id: 8,
+      question: "What will the following code output? `console.log([...'abc'].map(c => c.toUpperCase()));`",
+      options: [
+        "[\"A\", \"B\", \"C\"]",
+        "[\"a\", \"b\", \"c\"]",
+        "[\"ABC\"]",
+        "Error",
+      ],
+      answer: "[\"A\", \"B\", \"C\"]",
+      difficulty: "hard",
+      category: "JavaScript ES6",
+      explanation:
+        "The spread operator splits the string into individual characters, and map converts each character to uppercase, producing ['A', 'B', 'C'].",
+    },
   ],
 };
