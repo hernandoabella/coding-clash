@@ -9,7 +9,7 @@ export async function GET() {
 
   const achievements = await prisma.achievement.findMany({
     take: 10,
-    orderBy: { createdAt: "desc" },
+    
   });
 
   return NextResponse.json(achievements);
