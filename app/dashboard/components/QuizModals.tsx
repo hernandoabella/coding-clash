@@ -8,6 +8,8 @@ interface QuizProps {
   onGameStart?: (sessionId: string) => void;
 }
 
+
+
 const QuizModals = ({ onGameStart }: QuizProps) => {
   const languages = ["HTML", "JavaScript", "Python", "CSS"];
   const difficulties = [
@@ -91,6 +93,9 @@ const QuizModals = ({ onGameStart }: QuizProps) => {
   };
 
   if (!open) return null;
+
+  localStorage.setItem("selectedDifficulty", selectedDifficulty);
+
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
