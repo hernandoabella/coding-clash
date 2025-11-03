@@ -1,29 +1,25 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { FaGamepad, FaChartBar, FaCog } from "react-icons/fa";
-// import ChatBox from "@/app/components/ChatBox";
+import { ReactNode } from "react";
+import { SessionProvider } from "next-auth/react";
 import Sidebar from "../components/SideBar";
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
+interface LayoutProps {
+  children: ReactNode;
+}
 
-  const menuItems = [
-    { name: "Play", icon: <FaGamepad />, href: "/dashboard/play" },
-    { name: "Stats", icon: <FaChartBar />, href: "/dashboard/stats" },
-    { name: "Settings", icon: <FaCog />, href: "/dashboard/settings" },
-  ];
-
+export default function LeaderboardLayout({ children }: LayoutProps) {
   return (
-    <div className="flex h-screen bg-gray-50">
-      
-      <Sidebar />
+    <SessionProvider>
+      <div className="flex h-screen bg-gray-50">
+        {/* Sidebar */}
+        <Sidebar />
 
-      {/* Main content */}
-      <main className="flex-1 p-6 overflow-auto">{children}</main>
-    
-      {/* <ChatBox /> */}
-    </div>
+        {/* Main content area */}
+        <main className="flex-1 p-6 overflow-auto">
+          {children}
+        </main>
+      </div>
+    </SessionProvider>
   );
 }
