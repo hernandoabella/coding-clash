@@ -1,0 +1,384 @@
+2025-11-20T05:07:49.527266Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2025-11-20T05:07:49.527429Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "G:\\GitHub\\coding-battle\\client", pattern: "**/*", negated: false }
+2025-11-20T05:07:49.527642Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2025-11-20T05:07:49.527662Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "G:\\GitHub\\coding-battle\\client" }
+2025-11-20T05:07:49.529531Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:07:49.531331Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:07:49.531642Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:07:49.566672Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\globals.css"
+2025-11-20T05:07:49.566831Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:07:49.567032Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:07:49.567196Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components\\Footer.tsx"
+2025-11-20T05:07:49.567272Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components\\Hero.tsx"
+2025-11-20T05:07:49.567349Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components\\Howitworks.tsx"
+2025-11-20T05:07:49.567423Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components\\Leaderboard.tsx"
+2025-11-20T05:07:49.567498Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components\\Testimonials.tsx"
+2025-11-20T05:07:49.567661Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\layout.tsx"
+2025-11-20T05:07:49.567749Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\page.tsx"
+2025-11-20T05:07:49.567884Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\eslint.config.mjs"
+2025-11-20T05:07:49.567958Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\next.config.ts"
+2025-11-20T05:07:49.568201Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\package.json"
+2025-11-20T05:07:49.568269Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\postcss.config.mjs"
+2025-11-20T05:07:49.568366Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:07:49.568506Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public\\file.svg"
+2025-11-20T05:07:49.568597Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public\\globe.svg"
+2025-11-20T05:07:49.568674Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public\\next.svg"
+2025-11-20T05:07:49.568749Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public\\vercel.svg"
+2025-11-20T05:07:49.568823Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public\\window.svg"
+2025-11-20T05:07:49.568914Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\README.md"
+2025-11-20T05:07:49.568989Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\tsconfig.json"
+2025-11-20T05:07:49.569096Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:07:49.569141Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-11-20T05:07:49.569153Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:07:49.569157Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 18 file(s)
+2025-11-20T05:07:49.569822Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components\\Hero.tsx"
+2025-11-20T05:07:49.569837Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components\\Howitworks.tsx"
+2025-11-20T05:07:49.569837Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components\\Footer.tsx"
+2025-11-20T05:07:49.569835Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components\\Testimonials.tsx"
+2025-11-20T05:07:49.569858Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\app\\page.tsx"
+2025-11-20T05:07:49.569899Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\package.json"
+2025-11-20T05:07:49.569960Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components\\Leaderboard.tsx"
+2025-11-20T05:07:49.569959Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\public\\file.svg"
+2025-11-20T05:07:49.569993Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\public\\window.svg"
+2025-11-20T05:07:49.570016Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\postcss.config.mjs"
+2025-11-20T05:07:49.570019Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\app\\layout.tsx"
+2025-11-20T05:07:49.570066Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\next.config.ts"
+2025-11-20T05:07:49.570093Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\public\\vercel.svg"
+2025-11-20T05:07:49.570019Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\eslint.config.mjs"
+2025-11-20T05:07:49.570115Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\public\\next.svg"
+2025-11-20T05:07:49.570124Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\tsconfig.json"
+2025-11-20T05:07:49.570180Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\public\\globe.svg"
+2025-11-20T05:07:49.603649Z  INFO tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\README.md"
+2025-11-20T05:07:49.603845Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:07:49.603880Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:07:49.603886Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-11-20T05:07:49.604358Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-11-20T05:07:49.604381Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:07:49.604391Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:07:49.604395Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-11-20T05:07:49.604543Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\app\\globals.css"
+2025-11-20T05:07:49.604556Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:07:49.604569Z  INFO extract_candidates:extract_css_variables: tailwindcss_oxide::scanner: enter
+2025-11-20T05:07:49.604574Z  INFO extract_candidates:extract_css_variables:extract: tailwindcss_oxide::scanner: enter
+2025-11-20T05:07:49.604679Z  INFO extract_candidates:extract_css_variables:extract: tailwindcss_oxide::scanner: exit
+2025-11-20T05:07:49.604698Z  INFO extract_candidates:extract_css_variables: tailwindcss_oxide::scanner: exit
+2025-11-20T05:07:49.605167Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-11-20T05:07:49.605623Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:07:49.605634Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:07:49.607061Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:07:49.607313Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:07:49.607676Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:07:49.607913Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:07:49.608916Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:07:49.609459Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:07:49.609647Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:07:49.609881Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:07:49.609893Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:07:49.611189Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:07:49.611356Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:07:49.611592Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:07:49.611750Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:07:49.612506Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:07:49.612905Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:07:49.615235Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:12.308569Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:12.309767Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:08:12.309943Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:08:12.310128Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games"
+2025-11-20T05:08:12.310341Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:08:12.310490Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:08:12.311197Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:08:12.311653Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:12.311663Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:12.311668Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:12.311671Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 0 file(s)
+2025-11-20T05:08:12.311675Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:12.311679Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:12.311682Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:12.311685Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:12.311688Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:12.311695Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:12.311939Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:12.311949Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:12.313046Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:08:12.313210Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:08:12.313382Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games"
+2025-11-20T05:08:12.313595Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:08:12.313741Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:08:12.314479Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:08:12.314853Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:12.314988Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:12.315076Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:12.315082Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:17.028866Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:17.030043Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:08:17.030206Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:08:17.030380Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games"
+2025-11-20T05:08:17.030509Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games\\page.tsx"
+2025-11-20T05:08:17.030656Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:08:17.030806Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:08:17.031521Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:08:17.031929Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:17.031940Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:17.031944Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:17.031947Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-11-20T05:08:17.031989Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\app\\games\\page.tsx"
+2025-11-20T05:08:17.031998Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:17.032002Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:17.032005Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:17.032009Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:17.032012Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:17.032016Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:17.032139Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:17.032145Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:17.033148Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:08:17.033312Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:08:17.033609Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games"
+2025-11-20T05:08:17.033866Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:08:17.034100Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:08:17.035486Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:08:17.036314Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:17.036469Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:17.036605Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:17.036615Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:30.396637Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:30.398031Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:08:30.398214Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:08:30.398436Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games"
+2025-11-20T05:08:30.398634Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games\\[gameId]"
+2025-11-20T05:08:30.398855Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:08:30.399005Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:08:30.399693Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:08:30.400094Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:30.400105Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:30.400110Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:30.400113Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 0 file(s)
+2025-11-20T05:08:30.400118Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:30.400121Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:30.400124Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:30.400127Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:30.400130Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:30.400135Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:30.400279Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:30.400285Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:30.401345Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:08:30.401504Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:08:30.401680Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games"
+2025-11-20T05:08:30.401869Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games\\[gameId]"
+2025-11-20T05:08:30.402097Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:08:30.402244Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:08:30.402978Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:08:30.403373Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:30.403525Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:30.403666Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:30.403676Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:37.852502Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:37.853736Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:08:37.853903Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:08:37.854092Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games"
+2025-11-20T05:08:37.854282Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games\\[gameId]"
+2025-11-20T05:08:37.854405Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games\\[gameId]\\page.tsx"
+2025-11-20T05:08:37.854575Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:08:37.854727Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:08:37.855661Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:08:37.856146Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:37.856160Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:37.856166Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:37.856169Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-11-20T05:08:37.856224Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\app\\games\\[gameId]\\page.tsx"
+2025-11-20T05:08:37.856233Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:37.856238Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:37.856242Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:37.856246Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:37.856249Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:37.856259Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:37.856461Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:37.856473Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:37.857749Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:08:37.857926Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:08:37.858114Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games"
+2025-11-20T05:08:37.858315Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games\\[gameId]"
+2025-11-20T05:08:37.858574Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:08:37.858733Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:08:37.859464Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:08:37.859914Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:37.860053Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:37.860208Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:37.860222Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:55.966926Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:55.968073Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:08:55.968240Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:08:55.968419Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games"
+2025-11-20T05:08:55.968673Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games\\[gameId]"
+2025-11-20T05:08:55.968941Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:08:55.969097Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:08:55.969467Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\login"
+2025-11-20T05:08:55.969971Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:08:55.970370Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:55.970380Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:55.970385Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:55.970388Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 0 file(s)
+2025-11-20T05:08:55.970392Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:55.970396Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:55.970399Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:55.970402Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:55.970405Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:55.970410Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:55.970507Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:55.970513Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:55.971508Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:08:55.971664Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:08:55.971836Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games"
+2025-11-20T05:08:55.972022Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games\\[gameId]"
+2025-11-20T05:08:55.972268Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:08:55.972417Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:08:55.972757Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\login"
+2025-11-20T05:08:55.973221Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:08:55.973573Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:55.973700Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:55.973797Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:55.973806Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:59.478590Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:59.479872Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:08:59.480041Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:08:59.480219Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games"
+2025-11-20T05:08:59.480413Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games\\[gameId]"
+2025-11-20T05:08:59.480662Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:08:59.480811Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:08:59.481170Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\login"
+2025-11-20T05:08:59.481342Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\login\\page.tsx"
+2025-11-20T05:08:59.481824Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:08:59.482233Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:59.482244Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:59.482249Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:59.482252Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-11-20T05:08:59.482297Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\app\\login\\page.tsx"
+2025-11-20T05:08:59.482305Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:59.482309Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:59.482313Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:59.482317Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:59.482320Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:59.482324Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:59.482473Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:59.482485Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:59.483657Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:08:59.483831Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:08:59.484025Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games"
+2025-11-20T05:08:59.484218Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games\\[gameId]"
+2025-11-20T05:08:59.484474Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:08:59.484626Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:08:59.484989Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\login"
+2025-11-20T05:08:59.485550Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:08:59.485983Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:59.486117Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:08:59.486425Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:08:59.486437Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:09:05.067039Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:09:05.068263Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:09:05.068429Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:09:05.068606Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games"
+2025-11-20T05:09:05.068795Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games\\[gameId]"
+2025-11-20T05:09:05.069046Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:09:05.069197Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:09:05.069554Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\login"
+2025-11-20T05:09:05.069778Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\profile"
+2025-11-20T05:09:05.070359Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:09:05.070849Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:09:05.070862Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-11-20T05:09:05.070867Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:09:05.070871Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 0 file(s)
+2025-11-20T05:09:05.070876Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:09:05.070880Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:09:05.070884Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-11-20T05:09:05.070889Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-11-20T05:09:05.070892Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:09:05.070897Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-11-20T05:09:05.071045Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:09:05.071051Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:09:05.072028Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:09:05.072191Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:09:05.072363Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games"
+2025-11-20T05:09:05.072558Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games\\[gameId]"
+2025-11-20T05:09:05.072809Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:09:05.072956Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:09:05.073305Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\login"
+2025-11-20T05:09:05.073526Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\profile"
+2025-11-20T05:09:05.073984Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:09:05.074355Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:09:05.074489Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:09:05.074576Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:09:05.074586Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:09:08.526993Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:09:08.528163Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:09:08.528325Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:09:08.528501Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games"
+2025-11-20T05:09:08.528704Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games\\[gameId]"
+2025-11-20T05:09:08.529001Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:09:08.529169Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:09:08.529532Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\login"
+2025-11-20T05:09:08.529795Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\profile"
+2025-11-20T05:09:08.529918Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\profile\\page.tsx"
+2025-11-20T05:09:08.530539Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:09:08.530973Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:09:08.530983Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-11-20T05:09:08.530988Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:09:08.530991Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-11-20T05:09:08.531033Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\app\\profile\\page.tsx"
+2025-11-20T05:09:08.531043Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:09:08.531047Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:09:08.531050Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-11-20T05:09:08.531054Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-11-20T05:09:08.531057Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:09:08.531062Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-11-20T05:09:08.531177Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:09:08.531183Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:09:08.532264Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:09:08.532434Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\components"
+2025-11-20T05:09:08.532618Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games"
+2025-11-20T05:09:08.532814Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games\\[gameId]"
+2025-11-20T05:09:08.533070Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:09:08.533223Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:09:08.533607Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\login"
+2025-11-20T05:09:08.533846Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\profile"
+2025-11-20T05:09:08.534335Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:09:08.534740Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:09:08.534893Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:09:08.534964Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:09:08.534971Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:10:42.587613Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:10:42.588885Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:10:42.589074Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games"
+2025-11-20T05:10:42.589287Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games\\[gameId]"
+2025-11-20T05:10:42.589562Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:10:42.589720Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:10:42.590136Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\login"
+2025-11-20T05:10:42.590384Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\profile"
+2025-11-20T05:10:42.590510Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\profile\\page.tsx"
+2025-11-20T05:10:42.590639Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\components"
+2025-11-20T05:10:42.591112Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:10:42.591567Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:10:42.591577Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-11-20T05:10:42.591581Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:10:42.591584Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-11-20T05:10:42.591627Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "G:\\GitHub\\coding-battle\\client\\app\\profile\\page.tsx"
+2025-11-20T05:10:42.591635Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:10:42.591639Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:10:42.591642Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-11-20T05:10:42.591646Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-11-20T05:10:42.591649Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-11-20T05:10:42.591653Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-11-20T05:10:42.591753Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-11-20T05:10:42.591758Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-11-20T05:10:42.592700Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app"
+2025-11-20T05:10:42.592864Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games"
+2025-11-20T05:10:42.593049Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\games\\[gameId]"
+2025-11-20T05:10:42.593297Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage"
+2025-11-20T05:10:42.593450Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\landingpage\\components"
+2025-11-20T05:10:42.593835Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\login"
+2025-11-20T05:10:42.594064Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\app\\profile"
+2025-11-20T05:10:42.594267Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\components"
+2025-11-20T05:10:42.594722Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "G:\\GitHub\\coding-battle\\client\\public"
+2025-11-20T05:10:42.595082Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-11-20T05:10:42.595264Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-11-20T05:10:42.595321Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-11-20T05:10:42.595327Z  INFO get_globs: tailwindcss_oxide::scanner: exit
