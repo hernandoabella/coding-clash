@@ -16,10 +16,10 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 bg-white text-gray-900 min-h-screen p-6 flex flex-col border-r border-gray-200">
-      <h2 className="text-2xl font-bold mb-8 text-center">CodeBattle</h2>
+    <aside className="w-64 text-gray-900 min-h-screen p-6 flex flex-col border-r border-gray-200">
+      <h2 className="text-2xl font-bold mb-6 text-center">CODING BATTLE</h2>
 
-      <nav className="flex flex-col space-y-4">
+      <nav className="flex flex-col space-y-2">
         {sidebarLinks.map((link) => {
           const isActive = pathname === link.href;
           return (
