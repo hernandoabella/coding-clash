@@ -130,7 +130,7 @@ export default function GameHeroSection() {
               variants={itemVariants}
             >
               <motion.button
-                onClick={() => router.push("/games")}
+                onClick={() => router.push("/login")}
                 className="px-12 py-4 text-lg font-bold rounded-2xl relative overflow-hidden group"
                 variants={glowVariants}
                 initial="initial"
