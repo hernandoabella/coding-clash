@@ -12,22 +12,24 @@ const mockLeaderboard = [
 
 export default function LeaderboardPage() {
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-[#0b0f14] text-gray-200">
       {/* Sidebar */}
       <Sidebar />
 
       {/* Main Content */}
       <main className="flex-1 p-8 overflow-auto">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold text-center mb-4">Leaderboard</h1>
-          <p className="text-center text-gray-600 mb-8">
+          <h1 className="text-4xl font-bold text-center mb-4 text-cyan-400">
+            Leaderboard
+          </h1>
+          <p className="text-center text-gray-400 mb-8">
             See who’s leading the CodeBattle rankings!
           </p>
 
           {/* Leaderboard Table */}
-          <div className="bg-white shadow rounded overflow-hidden">
+          <div className="bg-[#111827] shadow-xl shadow-black/40 rounded overflow-hidden border border-gray-800">
             <table className="min-w-full text-left">
-              <thead className="bg-gray-100">
+              <thead className="bg-[#1f2937] text-gray-300">
                 <tr>
                   <th className="px-6 py-3">Rank</th>
                   <th className="px-6 py-3">Username</th>
@@ -38,11 +40,19 @@ export default function LeaderboardPage() {
                 {mockLeaderboard.map((user, index) => (
                   <tr
                     key={user.username}
-                    className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                    className={
+                      index % 2 === 0
+                        ? "bg-[#0f1620]"
+                        : "bg-[#131c27]"
+                    }
                   >
-                    <td className="px-6 py-3 font-semibold">{index + 1}</td>
+                    <td className="px-6 py-3 font-semibold text-cyan-400">
+                      {index + 1}
+                    </td>
                     <td className="px-6 py-3">{user.username}</td>
-                    <td className="px-6 py-3 font-bold">{user.points}</td>
+                    <td className="px-6 py-3 font-bold text-blue-400">
+                      {user.points}
+                    </td>
                   </tr>
                 ))}
               </tbody>
