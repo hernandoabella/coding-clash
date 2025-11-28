@@ -1,0 +1,74 @@
+/client
+├─ /app
+│   ├─ layout.tsx
+│   ├─ page.tsx                    # Landing Page principal
+│   ├─ /games
+│   │    ├─ page.tsx               # Games Lobby / Selector
+│   │    ├─ [gameId]/
+│   │    │    └─ page.tsx          # Dynamic game page
+│   │    ├─ /quiz/
+│   │    │    ├─ QuizBoard.tsx
+│   │    │    ├─ QuizQuestion.tsx
+│   │    │    ├─ QuizScore.tsx
+│   │    │    └─ quizData.ts
+│   │    ├─ /snake/
+│   │    │    └─ SnakeGame.tsx
+│   │    └─ /tictactoe/
+│   │         └─ TicTacToe.tsx
+│   ├─ /login
+│   │    └─ page.tsx
+│   ├─ /profile
+│   │    └─ page.tsx
+│   └─ /dashboard/                 # Optional: for logged-in users
+│        ├─ page.tsx
+│        └─ /components
+│             ├─ Leaderboard.tsx
+│             ├─ RecentGames.tsx
+│             └─ StatsCard.tsx
+│
+├─ /components
+│    ├─ Navbar.tsx
+│    ├─ GameList.tsx
+│    ├─ GameCard.tsx
+│    ├─ MockLoginButton.tsx
+│    ├─ Button.tsx
+│    ├─ Modal.tsx
+│    └─ Notification.tsx
+│
+├─ /landingpage
+│    └─ /components
+│         ├─ HeroSection.tsx
+│         ├─ HowItWorks.tsx
+│         ├─ Features.tsx
+│         ├─ Testimonials.tsx
+│         └─ Footer.tsx
+│
+├─ /context
+│    ├─ UserContext.tsx           # User session & auth
+│    └─ GameContext.tsx           # Current game state, multiplayer info
+│
+├─ /hooks
+│    ├─ useMockAuth.ts
+│    ├─ useGame.ts                # Local game state & logic
+│    └─ useWebSocket.ts           # Multiplayer ready hook
+│
+├─ /mocks
+│    ├─ games.ts
+│    └─ users.ts
+│
+├─ /services
+│    ├─ apiService.ts             # Fetching from backend
+│    └─ websocketService.ts       # Socket.io / WS connection
+│
+├─ /styles
+│    └─ globals.css
+│
+├─ /types
+│    ├─ index.d.ts
+│    ├─ game.ts
+│    └─ user.ts
+│
+├─ tsconfig.json
+├─ next.config.js
+├─ package.json
+└─ README.md
