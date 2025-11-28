@@ -5,6 +5,7 @@ export interface RecentGame {
 }
 
 export interface User {
+  name: ReactNode;
   username: string;
   email: string;
   level: number;
