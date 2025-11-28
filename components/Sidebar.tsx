@@ -2,10 +2,17 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaTachometerAlt, FaGamepad, FaTrophy, FaShoppingCart, FaCog } from "react-icons/fa";
+import {
+  FaTachometerAlt,
+  FaGamepad,
+  FaTrophy,
+  FaShoppingCart,
+  FaCog,
+} from "react-icons/fa";
 
 const sidebarLinks = [
   { name: "Dashboard", href: "/dashboard", icon: <FaTachometerAlt /> },
+  { name: "Play", href: "/games", icon: <FaGamepad /> },
   { name: "Leaderboard", href: "/leaderboard", icon: <FaTrophy /> },
   { name: "Store", href: "/store", icon: <FaShoppingCart /> },
   { name: "Settings", href: "/settings", icon: <FaCog /> },
@@ -15,9 +22,21 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 text-gray-900 min-h-screen p-6 flex flex-col border-r border-gray-200">
-      <h2 className="text-2xl font-bold mb-6 text-center">Coding Clash</h2>
+    <aside
+      className="w-64 min-h-screen p-6 flex flex-col 
+                 bg-gray-900 border-r border-gray-800 
+                 text-gray-200 shadow-xl"
+    >
+      {/* Título/Logo */}
+      <h2
+        className="text-2xl font-black mb-10 text-center 
+                   bg-clip-text text-transparent 
+                   bg-gradient-to-r from-cyan-400 to-blue-400"
+      >
+        Coding Clash
+      </h2>
 
+      {/* Navegación */}
       <nav className="flex flex-col space-y-2">
         {sidebarLinks.map((link) => {
           const isActive = pathname === link.href;
@@ -25,16 +44,38 @@ export default function Sidebar() {
             <Link
               key={link.href}
               href={link.href}
-              className={`flex items-center gap-3 py-2 px-4 rounded hover:bg-gray-100 transition ${
-                isActive ? "bg-gray-200 font-semibold" : ""
-              }`}
+              className={`
+                flex items-center gap-4 py-3 px-4 rounded-lg 
+                transition-all duration-200
+                ${
+                  isActive
+                    ? "bg-blue-600 text-white font-bold shadow-lg shadow-blue-600/30"
+                    : "text-gray-400 hover:bg-gray-800 hover:text-cyan-400"
+                }
+              `}
             >
-              <span className="text-lg">{link.icon}</span>
-              <span>{link.name}</span>
+              <span
+                className={`text-xl ${
+                  isActive ? "text-white" : "text-cyan-400/80"
+                }`}
+              >
+                {link.icon}
+              </span>
+              <span className={`${isActive ? "" : "font-medium"}`}>
+                {link.name}
+              </span>
             </Link>
           );
         })}
       </nav>
+
+      {/* Estado/Usuario */}
+      <div className="mt-auto pt-6 border-t border-gray-800">
+        <div className="flex items-center gap-3 text-sm text-gray-400">
+          <span className="w-2 h-2 rounded-full bg-green-500"></span>
+          <p>Status: Online</p>
+        </div>
+      </div>
     </aside>
   );
 }
