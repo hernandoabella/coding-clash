@@ -9,6 +9,7 @@ import {
   FaShoppingCart,
   FaCog,
   FaCode,
+  FaCrown,
 } from "react-icons/fa";
 
 const sidebarLinks = [
@@ -29,10 +30,21 @@ export default function Sidebar() {
                  text-gray-200 shadow-xl"
     >
       {/* Título/Logo */}
-      <h2 className="text-2xl font-black mb-10 text-center bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-400 flex items-center justify-center gap-2">
-        <FaCode className="text-cyan-400" />
-        Coding Clash
-      </h2>
+      <div className="relative mb-10 flex flex-col items-center">
+        {/* Container para icono con corona */}
+        <div className="relative mb-4">
+          {/* Icono de código */}
+          <FaCode className="text-5xl text-cyan-400" />
+
+          {/* Corona encima */}
+          <FaCrown className="absolute -top-3 -right-2 text-xl text-yellow-400 animate-bounce" />
+        </div>
+
+        {/* Texto */}
+        <h2 className="text-2xl font-black text-center bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-400">
+          Coding Clash
+        </h2>
+      </div>
 
       {/* Navegación */}
       <nav className="flex flex-col space-y-2">
