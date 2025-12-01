@@ -42,3 +42,5 @@ next-env.d.ts
 
 # Ignore all text files
 *.txt
+
+*.log
