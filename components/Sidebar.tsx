@@ -8,6 +8,7 @@ import {
   FaTrophy,
   FaShoppingCart,
   FaCog,
+  FaCode,
 } from "react-icons/fa";
 
 const sidebarLinks = [
@@ -28,11 +29,8 @@ export default function Sidebar() {
                  text-gray-200 shadow-xl"
     >
       {/* Título/Logo */}
-      <h2
-        className="text-2xl font-black mb-10 text-center 
-                   bg-clip-text text-transparent 
-                   bg-gradient-to-r from-cyan-400 to-blue-400"
-      >
+      <h2 className="text-2xl font-black mb-10 text-center bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-400 flex items-center justify-center gap-2">
+        <FaCode className="text-cyan-400" />
         Coding Clash
       </h2>
 
@@ -47,17 +45,15 @@ export default function Sidebar() {
               className={`
                 flex items-center gap-4 py-3 px-4 rounded-lg 
                 transition-all duration-200
-                ${
-                  isActive
-                    ? "bg-blue-600 text-white font-bold shadow-lg shadow-blue-600/30"
-                    : "text-gray-400 hover:bg-gray-800 hover:text-cyan-400"
+                ${isActive
+                  ? "bg-blue-600 text-white font-bold shadow-lg shadow-blue-600/30"
+                  : "text-gray-400 hover:bg-gray-800 hover:text-cyan-400"
                 }
               `}
             >
               <span
-                className={`text-xl ${
-                  isActive ? "text-white" : "text-cyan-400/80"
-                }`}
+                className={`text-xl ${isActive ? "text-white" : "text-cyan-400/80"
+                  }`}
               >
                 {link.icon}
               </span>
