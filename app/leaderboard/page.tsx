@@ -1,6 +1,6 @@
 "use client";
 
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "../../components/Sidebar";
 
 const mockLeaderboard = [
   { username: "CodeMaster", points: 1200 },
