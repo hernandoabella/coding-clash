@@ -1,37 +1,48 @@
-"use client";
+"use client"
 
-import { createContext, useState, ReactNode } from "react";
-import { mockUser, User } from "../mocks/users";
+import { createContext, useState, useEffect } from "react"
 
-interface UserContextType {
-  user: User | null;
-  login: (username: string, password: string) => void;
-  logout: () => void;
-}
+export const UserContext = createContext<any>(null)
 
-export const UserContext = createContext<UserContextType | undefined>(undefined);
+export function UserProvider({ children }: { children: React.ReactNode }) {
+  const [user, setUser] = useState(null)
 
-interface UserProviderProps {
-  children: ReactNode;
-}
-
-export function UserProvider({ children }: UserProviderProps) {
-  const [user, setUser] = useState<User | null>(null);
-
-  // Simulate login
-  const login = (username: string, password: string) => {
-    // For now, we just use mockUser
-    setUser(mockUser);
-  };
-
-  // Logout
   const logout = () => {
-    setUser(null);
-  };
+    setUser(null)
+    localStorage.removeItem("token")
+  }
+
+  const getUser = async () => {
+    const token = localStorage.getItem("token")
+    if (!token) return
+
+    try {
+      const res = await fetch("http://localhost:9000/api/auth/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      const data = await res.json()
+
+      if (res.ok) {
+        setUser(data)
+      } else {
+        logout()
+      }
+    } catch (error) {
+      console.error(error)
+      logout()
+    }
+  }
+
+  useEffect(() => {
+    getUser()
+  }, [])
 
   return (
-    <UserContext.Provider value={{ user, login, logout }}>
+    <UserContext.Provider value={{ user, setUser, logout }}>
       {children}
     </UserContext.Provider>
-  );
+  )
 }
