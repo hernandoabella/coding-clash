@@ -1,6 +1,6 @@
 "use client";
 
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "../../components/Sidebar";
 import GameList from "../../components/GameList";
 import { mockGames } from "../../mocks/games";
 
