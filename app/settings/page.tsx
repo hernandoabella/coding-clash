@@ -2,7 +2,7 @@
 
 import { useState, useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "../../components/Sidebar";
 
 export default function SettingsPage() {
   const userContext = useContext(UserContext);
