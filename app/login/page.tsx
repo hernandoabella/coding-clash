@@ -1,9 +1,70 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginRegisterPage() {
-  const [mode, setMode] = useState("login"); // "login" or "register"
+  const router = useRouter();
+  const [mode, setMode] = useState("login");
+  const [loading, setLoading] = useState(false);
+
+  const [form, setForm] = useState({
+    username: "",
+    email: "",
+    password: ""
+  });
+
+  // ✅ If already logged in -> go to dashboard
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      router.push("/dashboard");
+    }
+  }, [router]);
+
+  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+
+    setLoading(true);
+
+    const endpoint =
+      mode === "login"
+        ? "http://localhost:9000/api/auth/login"
+        : "http://localhost:9000/api/auth/register";
+
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+      console.log(data);
+
+      if (!res.ok) {
+        setLoading(false);
+        return alert(data.error || "Something went wrong");
+      }
+
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+      }
+
+      // ✅ Redirect to dashboard
+      router.push("/dashboard");
+
+    } catch (err) {
+      console.error(err);
+      alert("Server not reachable");
+    }
+
+    setLoading(false);
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0b0f14] text-gray-200 px-6">
@@ -13,103 +74,67 @@ export default function LoginRegisterPage() {
         <div className="flex mb-8 border-b border-gray-700">
           <button
             onClick={() => setMode("login")}
-            className={`flex-1 py-2 text-center font-semibold ${
-              mode === "login"
-                ? "text-cyan-400 border-b-2 border-cyan-400"
-                : "text-gray-500"
-            }`}
+            className={`flex-1 py-2 ${mode === "login" ? "text-cyan-400 border-b-2 border-cyan-400" : "text-gray-500"}`}
           >
             Login
           </button>
 
           <button
             onClick={() => setMode("register")}
-            className={`flex-1 py-2 text-center font-semibold ${
-              mode === "register"
-                ? "text-cyan-400 border-b-2 border-cyan-400"
-                : "text-gray-500"
-            }`}
+            className={`flex-1 py-2 ${mode === "register" ? "text-cyan-400 border-b-2 border-cyan-400" : "text-gray-500"}`}
           >
             Register
           </button>
         </div>
 
-        {/* LOGIN FORM */}
-        {mode === "login" && (
-          <form className="space-y-5">
+        <form className="space-y-5" onSubmit={handleSubmit}>
+
+          {mode === "register" && (
             <div>
-              <label className="block mb-1 text-gray-300">Email</label>
+              <label>Username</label>
               <input
-                type="email"
-                className="w-full px-4 py-3 rounded-lg bg-[#0f1620] border border-gray-700 
-                           text-gray-200 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                placeholder="you@example.com"
+                name="username"
+                onChange={handleChange}
+                className="w-full p-2 bg-black border border-gray-700 rounded"
+                required
               />
             </div>
+          )}
 
-            <div>
-              <label className="block mb-1 text-gray-300">Password</label>
-              <input
-                type="password"
-                className="w-full px-4 py-3 rounded-lg bg-[#0f1620] border border-gray-700 
-                           text-gray-200 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                placeholder="••••••••"
-              />
-            </div>
+          <div>
+            <label>Email</label>
+            <input
+              name="email"
+              type="email"
+              onChange={handleChange}
+              className="w-full p-2 bg-black border border-gray-700 rounded"
+              required
+            />
+          </div>
 
-            <button
-              type="submit"
-              className="w-full py-3 rounded-lg font-bold bg-cyan-600 hover:bg-cyan-500 
-                         transition text-black shadow shadow-cyan-600/30"
-            >
-              Login
-            </button>
-          </form>
-        )}
+          <div>
+            <label>Password</label>
+            <input
+              name="password"
+              type="password"
+              onChange={handleChange}
+              className="w-full p-2 bg-black border border-gray-700 rounded"
+              required
+            />
+          </div>
 
-        {/* REGISTER FORM */}
-        {mode === "register" && (
-          <form className="space-y-5">
-            <div>
-              <label className="block mb-1 text-gray-300">Username</label>
-              <input
-                type="text"
-                className="w-full px-4 py-3 rounded-lg bg-[#0f1620] border border-gray-700 
-                           text-gray-200 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                placeholder="Pick a cool gamer name"
-              />
-            </div>
+          <button
+            disabled={loading}
+            className="w-full bg-cyan-500 text-black py-2 rounded font-bold hover:bg-cyan-400 transition"
+          >
+            {loading
+              ? "Processing..."
+              : mode === "login"
+              ? "Login"
+              : "Create Account"}
+          </button>
 
-            <div>
-              <label className="block mb-1 text-gray-300">Email</label>
-              <input
-                type="email"
-                className="w-full px-4 py-3 rounded-lg bg-[#0f1620] border border-gray-700 
-                           text-gray-200 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                placeholder="you@example.com"
-              />
-            </div>
-
-            <div>
-              <label className="block mb-1 text-gray-300">Password</label>
-              <input
-                type="password"
-                className="w-full px-4 py-3 rounded-lg bg-[#0f1620] border border-gray-700 
-                           text-gray-200 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                placeholder="••••••••"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full py-3 rounded-lg font-bold bg-green-600 hover:bg-green-500 
-                         transition text-black shadow shadow-green-600/30"
-            >
-              Create Account
-            </button>
-          </form>
-        )}
-
+        </form>
       </div>
     </div>
   );
