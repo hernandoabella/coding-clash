@@ -10,6 +10,7 @@ import {
   FaCog,
   FaCode,
   FaCrown,
+  FaUser,
 } from "react-icons/fa";
 
 const sidebarLinks = [
@@ -17,6 +18,7 @@ const sidebarLinks = [
   { name: "Play", href: "/games", icon: <FaGamepad /> },
   { name: "Leaderboard", href: "/leaderboard", icon: <FaTrophy /> },
   { name: "Store", href: "/store", icon: <FaShoppingCart /> },
+  { name: "Profile", href: "/profile", icon: <FaUser /> },
   { name: "Settings", href: "/settings", icon: <FaCog /> },
 ];
 
