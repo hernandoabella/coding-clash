@@ -66,12 +66,7 @@ export const mockGames: Game[] = [
     description: "Memorize and recreate code patterns.",
     icon: "🧩",
   },
-  {
-    id: "devTrivia",
-    name: "Dev Trivia",
-    description: "Test your programming culture knowledge.",
-    icon: "🎯",
-  },
+ 
 
   // 🤝 Multiplayer style
   {
@@ -93,12 +88,6 @@ export const mockGames: Game[] = [
     name: "Build a Feature",
     description: "Implement a missing feature in a real app.",
     icon: "🏗️",
-  },
-  {
-    id: "uiChallenge",
-    name: "UI Challenge",
-    description: "Recreate a UI as accurately as possible.",
-    icon: "🎨",
   },
 
   // 🔐 Advanced
