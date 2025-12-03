@@ -12,7 +12,7 @@ const mockLeaderboard = [
 
 export default function LeaderboardPage() {
   return (
-    <div className="flex min-h-screen bg-[#0b0f14] text-gray-200">
+    <div className="flex min-h-screen bg-gray-900 text-white">
       {/* Sidebar */}
       <Sidebar />
 
