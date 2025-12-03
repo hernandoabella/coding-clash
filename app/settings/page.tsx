@@ -8,7 +8,7 @@ export default function SettingsPage() {
   const userContext = useContext(UserContext);
   const [username, setUsername] = useState(userContext?.user?.username || "");
   const [email, setEmail] = useState(userContext?.user?.email || "");
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true); // default dark mode
 
   const handleSave = () => {
     console.log("Saved settings:", { username, email, darkMode });
@@ -16,16 +16,18 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className={`flex min-h-screen ${darkMode ? "bg-gray-900 text-white" : "bg-gray-50 text-gray-900"}`}>
       {/* Sidebar */}
       <Sidebar />
 
       {/* Main Content */}
       <main className="flex-1 p-8 overflow-auto">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8 text-center">Settings</h1>
+          <h1 className="text-4xl font-bold mb-8 text-center">
+            Settings
+          </h1>
 
-          <section className="bg-white shadow rounded p-6 space-y-6">
+          <section className={`shadow rounded p-6 space-y-6 ${darkMode ? "bg-gray-800" : "bg-white"}`}>
             {/* Profile Info */}
             <div>
               <h2 className="text-2xl font-semibold mb-4">Profile</h2>
@@ -36,7 +38,7 @@ export default function SettingsPage() {
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="w-full border border-gray-300 rounded px-3 py-2"
+                    className={`w-full rounded px-3 py-2 ${darkMode ? "bg-gray-700 border-gray-600 text-white" : "bg-white border-gray-300 text-black"}`}
                   />
                 </div>
 
@@ -46,7 +48,7 @@ export default function SettingsPage() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full border border-gray-300 rounded px-3 py-2"
+                    className={`w-full rounded px-3 py-2 ${darkMode ? "bg-gray-700 border-gray-600 text-white" : "bg-white border-gray-300 text-black"}`}
                   />
                 </div>
               </div>
@@ -69,7 +71,7 @@ export default function SettingsPage() {
 
             <button
               onClick={handleSave}
-              className="mt-4 py-2 px-6 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+              className="mt-4 py-2 px-6 bg-blue-600 hover:bg-blue-700 text-white rounded transition"
             >
               Save Settings
             </button>
