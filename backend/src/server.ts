@@ -15,6 +15,8 @@ app.use(express.json());
 // Routes
 app.use("/api/auth", authRoutes);
 
+
+
 // Test route
 app.get("/", (req, res) => {
   res.send("✅ API is running");
